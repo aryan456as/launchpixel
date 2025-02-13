@@ -20,17 +20,117 @@ function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  const [isSuccess, setIsSuccess] = useState(false); // Success state
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
+  };
+
+  const validateStep = () => {
+    const newErrors = {};
+      if (!formData.name.trim()) {newErrors.name = 'Name is required.';
+        alert('Name is required.');
+      }
+      if (!formData.email.trim()) {
+        newErrors.email = 'Email is required.';
+        alert('Email is required.');
+      } else if (!/^[\w-.]+@[\w-]+\.[a-zA-Z]{2,7}$/.test(formData.email)) {
+        newErrors.email = 'Enter a valid email.';
+        alert('Enter a valid email.');
+      }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+      // Formsubmit action URL
+      if (validateStep()) {
+        setIsLoading(true);  // Set loading to true when the submit is clicked
+  
+      const formActionURL = 'https://formsubmit.co/aryan.456.as@gmail.com'; // Replace with your email
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('message', formData.message);
+      formDataToSend.append('_captcha', 'false');
+  
+      try {
+        // Use await to send data to Formsubmit
+        const response = await fetch(formActionURL, {
+          method: 'POST',
+          body: formDataToSend,
+        });
+  
+        if (response.ok) {
+          setIsSuccess(true);
+          alert('Your message has been sent successfully!');
+          setFormData({
+            name: '',
+            email: '',
+            message: ''
+          });
+        } else {
+          alert('There was an error. Please try again.');
+        }
+      } catch (error) {
+        alert('There was an error. Please try again.');
+        console.error('Error in form submission:', error);
+      }finally {
+         setIsLoading(false);  // Set loading to false after the process is done
+          setIsSuccess(false)  
+    }}
+    }
+
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
+  useEffect(() => {
+    const options = {
+      threshold: 0.5, // Trigger when 30% of the section is visible
+      rootMargin: '-80px 0px 0px 0px' // Offset for the fixed header
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    // Observe all sections
+    const sections = ['home', 'services', 'portfolio', 'testimonials', 'blog', 'contact'];
+    sections.forEach(section => {
+      const element = document.getElementById(section);
+      if (element) observer.observe(element);
+    });
+
+    return () => {
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element) observer.unobserve(element);
+      });
+    };
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-      setActiveSection(sectionId)
-      setIsMenuOpen(false)
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false);
     }
   }
 
@@ -70,7 +170,7 @@ function LandingPage() {
               <NavLink section="services" label="Services" />
               <NavLink section="portfolio" label="Portfolio" />
               <NavLink section="testimonials" label="Testimonials" />
-              <NavLink section="blog" label="Blog" />
+               {/*<NavLink section="blog" label="Blog" /> */}
               <button
                 onClick={() => scrollToSection("contact")}
                 className="ml-4 px-6 py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300"
@@ -97,7 +197,7 @@ function LandingPage() {
       transition={{ duration: 0.3 }}
     >            <div className="flex flex-col items-center w-full justify-center min-h-screen px-6 bg-gray-950  blur-50 backdrop-blur-lg">
                 <nav className="container mx-auto flex flex-col items-center space-y-6 transform -translate-y-12 backdrop-blur-lg">
-                {["home", "services", "portfolio", "testimonials", "blog"].map((section) => (
+                {["home", "services", "portfolio", "testimonials"/*, "blog"*/].map((section) => (
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
@@ -366,22 +466,40 @@ function LandingPage() {
               <form className="space-y-6">
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Your Name"
                   className="w-full px-4 py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                 />
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Your Email"
                   className="w-full px-4 py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                 />
                 <input
                   type="text"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Your Message"
                   className="w-full px-4 py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                 />
-                <button className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-2">
-                  Send Message
-                  <MessageSquare size={20} className="group-hover:translate-x-1 transition-transform" />
+                <button 
+                  onClick={handleSubmit}
+                  disabled={isLoading} // Disable button while loading
+                  className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-2"
+                >
+                  {isLoading ? (
+      <div className="spinner-border animate-spin border-t-2 border-b-2 border-white w-6 h-6 border-solid rounded-full"></div> // You can replace this with a spinner of your choice
+    ) : (
+     <>Send Message
+      <MessageSquare size={20} className="group-hover:translate-x-1 transition-transform" /></>
+    )}
+          
                 </button>
               </form>
             </div>
