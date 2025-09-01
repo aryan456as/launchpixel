@@ -4,6 +4,11 @@ import {
   Code2,
   Smartphone,
   Brain,
+  Book,
+  IdCard,
+  LayoutDashboard,
+  PenTool,
+  BarChart2,
   Twitter,
   Linkedin,
   Github,
@@ -17,6 +22,32 @@ import { motion } from 'framer-motion'
 import Image from "next/image"
 
 function LandingPage() {
+  // Animated counters for stats
+  const [clientCount, setClientCount] = useState(1);
+  const [projectCount, setProjectCount] = useState(1);
+
+  useEffect(() => {
+    let clientTarget = 50;
+    let projectTarget = 100;
+    let clientInterval = setInterval(() => {
+      setClientCount((prev) => {
+        if (prev < clientTarget) return prev + 1;
+        clearInterval(clientInterval);
+        return clientTarget;
+      });
+    }, 18); // speed: lower is faster
+    let projectInterval = setInterval(() => {
+      setProjectCount((prev) => {
+        if (prev < projectTarget) return prev + 1;
+        clearInterval(projectInterval);
+        return projectTarget;
+      });
+    }, 10);
+    return () => {
+      clearInterval(clientInterval);
+      clearInterval(projectInterval);
+    };
+  }, []);
   const [isVisible, setIsVisible] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -58,7 +89,7 @@ function LandingPage() {
       if (validateStep()) {
         setIsLoading(true);  // Set loading to true when the submit is clicked
   
-      const formActionURL = 'https://formsubmit.co/aryan.456.as@gmail.com'; // Replace with your email
+      const formActionURL = 'https://formsubmit.co/viveksharma.network@gmail.com'; // Replace with your email
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
@@ -162,9 +193,13 @@ function LandingPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950 backdrop-blur-lg border-b border-gray-800">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-              LaunchPixel
-            </h1>
+            <Image
+              src="/logo.gif"
+              alt="LaunchPixel Logo"
+              width={90}
+              height={90}
+              className="rounded-full"
+            />
             <div className="hidden lg:flex items-center gap-2 justify-end">
               <NavLink section="home" label="Home" />
               <NavLink section="services" label="Services" />
@@ -252,7 +287,7 @@ function LandingPage() {
                   onClick={() => scrollToSection("contact")}
                   className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-2"
                 >
-                  Get Started
+                  Contact us
                   <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
@@ -262,13 +297,17 @@ function LandingPage() {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-2xl blur-2xl"></div>
-                <Image
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80"
-                  alt="Hero illustration"
-                  width={800}
-                  height={450}
-                  className="rounded-2xl shadow-2xl relative z-10 border border-gray-800"
-                />
+                <video
+                src="/hero.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                width={800}
+                height={450}
+                className="rounded-2xl shadow-2xl relative z-10 border border-gray-800"
+                  >
+                </video>
               </div>
             </div>
           </div>
@@ -283,7 +322,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
                 <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                  50+
+                  {clientCount}+
                 </div>
                 <div className="text-gray-400 mt-2">Happy Clients</div>
               </div>
@@ -292,7 +331,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
                 <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                  100+
+                  {projectCount}+
                 </div>
                 <div className="text-gray-400 mt-2">Projects Completed</div>
               </div>
@@ -312,9 +351,9 @@ function LandingPage() {
                 <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
                   <Code2 className="w-6 h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Web Development</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">Web/App Development</h3>
                 <p className="text-gray-400">
-                  Custom web applications built with modern technologies and best practices.
+                  Custom applications built with modern technologies and best practices.
                 </p>
               </div>
             </div>
@@ -324,7 +363,7 @@ function LandingPage() {
                 <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
                   <Smartphone className="w-6 h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Mobile Apps</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">Brand Stratergy</h3>
                 <p className="text-gray-400">Native and cross-platform mobile applications for iOS and Android.</p>
               </div>
             </div>
@@ -340,6 +379,80 @@ function LandingPage() {
                 </p>
               </div>
             </div>
+            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
+                  <Book className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-white">Guidelines & Systems</h3>
+                <p className="text-gray-400">
+                  Intelligent applications powered by cutting-edge AI and machine learning.
+                </p>
+              </div>
+            </div>
+            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
+                  <IdCard className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-white">Identity Design</h3>
+                <p className="text-gray-400">
+                  Intelligent applications powered by cutting-edge AI and machine learning.
+                </p>
+              </div>
+            </div>
+            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
+                  <LayoutDashboard className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-white">UI Design & UX stratergy</h3>
+                <p className="text-gray-400">
+                  Intelligent applications powered by cutting-edge AI and machine learning.
+                </p>
+              </div>
+            </div>
+            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
+                  <PenTool className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-white">Prototyping</h3>
+                <p className="text-gray-400">
+                  Intelligent applications powered by cutting-edge AI and machine learning.
+                </p>
+              </div>
+            </div>
+            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
+                  <BarChart2 className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-white">SEO Strategies</h3>
+                <p className="text-gray-400">
+                  Intelligent applications powered by cutting-edge AI and machine learning.
+                </p>
+              </div>
+            </div>
+            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
+                  <IdCard className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-white">Identity & Branding</h3>
+                <p className="text-gray-400">
+                  Intelligent applications powered by cutting-edge AI and machine learning.
+                </p>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -347,28 +460,28 @@ function LandingPage() {
       {/* Portfolio Section */}
       <div id="portfolio" className="py-20 relative">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-16 text-white">Our Portfolio</h2>
+          <h2 className="text-3xl font-bold text-center mb-16 text-white">Our Top Projects</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="group relative overflow-hidden rounded-xl">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
-                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80"
-                alt="AdvDiary"
+                src="/easelearnai.png"
+                alt="EaseLearnAI"
                 width={800}
                 height={600}
                 className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">AdvDiary</h3>
-                <p className="text-gray-300 text-sm">Mobile App</p>
-                <p className="text-gray-400 mt-2">Comprehensive legal case management and tracking system.</p>
+                <h3 className="text-xl font-semibold text-white mb-2">EaseLearn.ai</h3>
+                <p className="text-gray-300 text-sm">AI App</p>
+                <p className="text-gray-400 mt-2">AI-powered personalized learning platform.</p>
               </div>
             </div>
             <div className="group relative overflow-hidden rounded-xl">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
-                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"
+                src="livercure.png"
                 alt="Livercure"
                 width={800}
                 height={600}
@@ -384,7 +497,23 @@ function LandingPage() {
             <div className="group relative overflow-hidden rounded-xl">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
-                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+                src="/madhavfabrications.png"
+                alt="Livercure"
+                width={800}
+                height={900}
+                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                <h3 className="text-xl font-semibold text-white mb-2">MadhavFabrications.in</h3>
+                <p className="text-gray-300 text-sm">Ecommerce</p>
+                <p className="text-gray-400 mt-2">A Clothing Ecommerce platform for Women</p>
+              </div>
+            </div>
+            <div className="group relative overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+              <Image
+                src="vibecast.png"
                 alt="EaseLearnAI"
                 width={800}
                 height={600}
@@ -392,13 +521,49 @@ function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">EaseLearnai.in</h3>
-                <p className="text-gray-300 text-sm">AI App</p>
-                <p className="text-gray-400 mt-2">AI-powered personalized learning platform.</p>
+                <h3 className="text-xl font-semibold text-white mb-2">VibeCast.in</h3>
+                <p className="text-gray-300 text-sm">Startup</p>
+                <p className="text-gray-400 mt-2">VibeCast Innovations PVT LTD Deals in Digital Signages</p>
               </div>
             </div>
+            <div className="group relative overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+              <Image
+                src="varanasionwheels.png"
+                alt="AdvDiary"
+                width={800}
+                height={600}
+                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                <h3 className="text-xl font-semibold text-white mb-2">Varanasi on Wheels</h3>
+                <p className="text-gray-300 text-sm">Tours & Travels Agency</p>
+                <p className="text-gray-400 mt-2">A Comprehensive Tours & Travel Agency based in Varanasi</p>
+              </div>
+            </div>
+            <div className="group relative overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+              <Image
+                src="sunilbookstore.png"
+                alt="EaseLearnAI"
+                width={800}
+                height={600}
+                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                <h3 className="text-xl font-semibold text-white mb-2">sunilbookstore.store/</h3>
+                <p className="text-gray-300 text-sm">Portfolio</p>
+                <p className="text-gray-400 mt-2">Portfolio for Sunil Book Store making their presence on the internet and making them reach wider audience</p>
+              </div>
+            </div>
+
+
           </div>
         </div>
+        
+        
       </div>
 
       {/* Testimonials Section */}
@@ -408,21 +573,21 @@ function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Aryan",
-                role: "CEO, TechCorp",
-                text: "Working with LaunchPixel has been an incredible experience. They delivered our project on time and exceeded our expectations.",
+                name: "Akansh Gupta",
+                role: "CEO, Varanasi on Wheels",
+                text: "Working with LaunchPixel has been an incredible experience. They delivered our project on time and exceeded our expectations. we are working closely for marketing and SEO strategies.",
                 image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
               },
               {
-                name: "Vivek",
-                role: "CTO, StartupX",
-                text: "The team's technical expertise and attention to detail made our complex project a success.",
+                name: "Aryan Raj Singh",
+                role: "Founder, EaseLearnAI",
+                text: "LaunchPixel's technical expertise and attention to detail made our complex project a success.",
                 image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
               },
               {
-                name: "Rahul",
-                role: "Founder, InnovateCo",
-                text: "Outstanding service and support. They truly understand modern software development.",
+                name: "Shivanshu Tripathi",
+                role: "Owner, VibeCast Innovations",
+                text: "Outstanding service and support. They truly understand modern software development. I recommend LaunchPixel and am definately coming back to them for more projects.",
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
               },
             ].map((testimonial, index) => (
@@ -506,12 +671,16 @@ function LandingPage() {
             <div>
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-2xl blur-2xl"></div>
-                <Image
-                  src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80"
-                  alt="Contact illustration"
+                <video
+                  src="/contact2.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   width={800}
-                  height={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl relative z-10 border border-gray-800"
+                  aria-label="Contact illustration"
                 />
               </div>
             </div>
@@ -530,18 +699,22 @@ function LandingPage() {
               <p className="text-gray-400">Transforming ideas into powerful digital solutions.</p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">Services</h4>
+              <h4 className="font-semibold mb-4 text-white"> </h4>
               <ul className="space-y-2 text-gray-400">
-                <li className="hover:text-indigo-400 transition-colors cursor-pointer">Web Development</li>
-                <li className="hover:text-indigo-400 transition-colors cursor-pointer">Mobile Apps</li>
-                <li className="hover:text-indigo-400 transition-colors cursor-pointer">AI Apps</li>
+                <li className="hover:text-indigo-400 transition-colors cursor-pointer"></li>
+                <li className="hover:text-indigo-400 transition-colors cursor-pointer">  </li>
+                <li className="hover:text-indigo-400 transition-colors cursor-pointer"></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4 text-white">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
-                <li className="hover:text-indigo-400 transition-colors cursor-pointer">Blog</li>
-                <li className="hover:text-indigo-400 transition-colors cursor-pointer">Contact</li>
+                <li>
+                  <a href="/hiring" className="hover:text-indigo-400 transition-colors cursor-pointer">Hiring</a>
+                </li>
+                <li>
+                  <a href="#services" className="hover:text-indigo-400 transition-colors cursor-pointer">Our Services</a>
+                </li>
               </ul>
             </div>
             <div>
@@ -555,7 +728,7 @@ function LandingPage() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            © 2024 LaunchPixel. All rights reserved.
+            © 2025 LaunchPixel. All rights reserved.
           </div>
         </div>
       </footer>
