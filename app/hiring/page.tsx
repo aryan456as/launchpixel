@@ -95,7 +95,7 @@ export default function CampusAmbassadorForm() {
     }
 
     setIsLoading(true)
-    const formActionURL = 'https://formsubmit.co/launchpixel.dev@gmail.com' // Replace with your actual email
+    const formActionURL = 'https://formsubmit.co/viveksharma.network@gmail.com' // Replace with your actual email
     const formDataToSend = new FormData()
     
     Object.entries(formData).forEach(([key, value]) => {
