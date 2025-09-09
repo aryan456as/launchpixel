@@ -29,20 +29,21 @@ function LandingPage() {
   useEffect(() => {
     let clientTarget = 50;
     let projectTarget = 100;
+    // Make animation 5x slower by multiplying intervals by 5
     let clientInterval = setInterval(() => {
       setClientCount((prev) => {
         if (prev < clientTarget) return prev + 1;
         clearInterval(clientInterval);
         return clientTarget;
       });
-    }, 18); // speed: lower is faster
+    }, 90); // 18 * 5 = 90ms
     let projectInterval = setInterval(() => {
       setProjectCount((prev) => {
         if (prev < projectTarget) return prev + 1;
         clearInterval(projectInterval);
         return projectTarget;
       });
-    }, 10);
+    }, 50); // 10 * 5 = 50ms
     return () => {
       clearInterval(clientInterval);
       clearInterval(projectInterval);
