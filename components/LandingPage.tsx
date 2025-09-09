@@ -600,7 +600,7 @@ function LandingPage() {
                 </h3>
                 <p className="text-gray-300 text-sm">_ </p>
                 
-                <p className="text-black-400 mt-2">Built the website for Power Play Cricket Academy, showcasing all of their Faculty and peroper form so new candidates can directly register.</p>
+                <p className="text-black-400 mt-2">Built the website for Power Play Cricket Academy, showcasing all of their Faculty and a Registration form so new candidates can directly register.</p>
               </div>
             </div>
             <div className="group relative overflow-hidden rounded-xl">
