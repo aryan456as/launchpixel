@@ -473,7 +473,11 @@ function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">EaseLearn.ai</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://easelearn.ai" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    EaseLearn.ai
+                  </a>
+                </h3>
                 <p className="text-gray-300 text-sm">AI App</p>
                 <p className="text-gray-400 mt-2">AI-powered personalized learning platform.</p>
               </div>
@@ -489,7 +493,11 @@ function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">Livercure.org</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://livercure.org" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    LiverCure.org
+                  </a>
+                </h3>
                 <p className="text-gray-300 text-sm">Web App</p>
                 <p className="text-gray-400 mt-2">Healthcare platform for liver disease awareness and treatment.</p>
               </div>
@@ -505,7 +513,11 @@ function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">MadhavFabrications.in</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://madhavfabrication.in" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    MadhavFabrication.in
+                  </a>
+                </h3>
                 <p className="text-gray-300 text-sm">Ecommerce</p>
                 <p className="text-gray-400 mt-2">A Clothing Ecommerce platform for Women</p>
               </div>
@@ -521,7 +533,11 @@ function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">VibeCast.in</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://vibecast.in" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    VibeCast.in
+                  </a>
+                </h3>
                 <p className="text-gray-300 text-sm">Startup</p>
                 <p className="text-gray-400 mt-2">VibeCast Innovations PVT LTD Deals in Digital Signages</p>
               </div>
@@ -537,7 +553,11 @@ function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">Varanasi on Wheels</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://varanasionwheels.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    VaranasionWheels.com
+                  </a>
+                </h3>
                 <p className="text-gray-300 text-sm">Tours & Travels Agency</p>
                 <p className="text-gray-400 mt-2">A Comprehensive Tours & Travel Agency based in Varanasi</p>
               </div>
@@ -553,11 +573,57 @@ function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">sunilbookstore.store/</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://sunilbookstore.store" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    SunilBookStore.store
+                  </a>
+                </h3>
                 <p className="text-gray-300 text-sm">Portfolio</p>
                 <p className="text-gray-400 mt-2">Portfolio for Sunil Book Store making their presence on the internet and making them reach wider audience</p>
               </div>
             </div>
+            <div className="group relative overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+              <Image
+                src="cricketacademy.png"
+                alt="EaseLearnAI"
+                width={800}
+                height={600}
+                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://powerplaycricketacademy.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    PowerPlayCricketAcademy.com
+                  </a>
+                </h3>
+                <p className="text-gray-300 text-sm">_ </p>
+                
+                <p className="text-black-400 mt-2">Built the website for Power Play Cricket Academy, showcasing all of their Faculty and peroper form so new candidates can directly register.</p>
+              </div>
+            </div>
+            <div className="group relative overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+              <Image
+                src="ayushmaan.png"
+                alt="EaseLearnAI"
+                width={800}
+                height={600}
+                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://ayushman-hospital2.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    AyushmaanHospitalKorba.net.in
+                  </a>
+                </h3>
+                <p className="text-gray-300 text-sm">Hospital Management System</p>
+                <p className="text-black-400 mt-2">Built a Hospital Management System for Ayushmaan Hospital Korba to manage their patients and staff efficiently, Proper call to action buttons for ease of booking.</p>
+              </div>
+            </div>
+            
 
 
           </div>
@@ -569,26 +635,26 @@ function LandingPage() {
       {/* Testimonials Section */}
       <div id="testimonials" className="py-20 relative">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-16 text-white">What Clients Say</h2>
+          <h2 className="text-3xl font-bold text-center mb-16 text-white">What Our Clients Say</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 name: "Akansh Gupta",
                 role: "CEO, Varanasi on Wheels",
                 text: "Working with LaunchPixel has been an incredible experience. They delivered our project on time and exceeded our expectations. we are working closely for marketing and SEO strategies.",
-                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+                image: "/Akansh.png",
               },
               {
                 name: "Aryan Raj Singh",
                 role: "Founder, EaseLearnAI",
                 text: "LaunchPixel's technical expertise and attention to detail made our complex project a success.",
-                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+                image: "/Aryan.png",
               },
               {
                 name: "Shivanshu Tripathi",
                 role: "Owner, VibeCast Innovations",
                 text: "Outstanding service and support. They truly understand modern software development. I recommend LaunchPixel and am definately coming back to them for more projects.",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+                image: "/Shivanshu.png",
               },
             ].map((testimonial, index) => (
               <div
