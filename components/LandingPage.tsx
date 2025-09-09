@@ -776,7 +776,7 @@ function LandingPage() {
               <h4 className="font-semibold mb-4 text-white">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="/hiring" className="hover:text-indigo-400 transition-colors cursor-pointer">Hiring</a>
+                  <a href="/hiring" className="hover:text-indigo-400 transition-colors cursor-pointer">We are Hiring</a>
                 </li>
                 <li>
                   <a href="#services" className="hover:text-indigo-400 transition-colors cursor-pointer">Our Services</a>
