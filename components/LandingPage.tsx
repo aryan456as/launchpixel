@@ -624,7 +624,26 @@ function LandingPage() {
                 <p className="text-black-400 mt-2">Built a Hospital Management System for Ayushmaan Hospital Korba to manage their patients and staff efficiently, Proper call to action buttons for ease of booking.</p>
               </div>
             </div>
-            
+            <div className="group relative overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+              <Image
+                src="sharansmusicacademy.png"
+                alt="EaseLearnAI"
+                width={800}
+                height={600}
+                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  <a href="https://sharansmusicacademy.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                    sharansmusicacademy.com
+                  </a>
+                </h3>
+                <p className="text-gray-300 text-sm">Music Academy website</p>
+                <p className="text-gray-400 mt-2">Built a Music Academy Management System for Sharans Music Academy to manage their Students and staff efficiently, Proper call to action buttons for ease of booking.</p>
+              </div>
+            </div>
 
 
           </div>
