@@ -299,7 +299,7 @@ function LandingPage() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-2xl blur-2xl"></div>
                 <video
-                src="/hero.mp4"
+                src="/launch_hero.mp4"
                 autoPlay
                 loop
                 muted
