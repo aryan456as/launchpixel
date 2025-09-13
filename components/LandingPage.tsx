@@ -527,7 +527,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
                 src="vibecast.png"
-                alt="EaseLearnAI"
+                alt="vibecast"
                 width={800}
                 height={600}
                 className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
@@ -547,7 +547,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
                 src="varanasionwheels.png"
-                alt="AdvDiary"
+                alt="varanasionwheels"
                 width={800}
                 height={600}
                 className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
@@ -567,7 +567,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
                 src="sunilbookstore.png"
-                alt="EaseLearnAI"
+                alt="sunilbookstore"
                 width={800}
                 height={600}
                 className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
@@ -587,7 +587,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
                 src="cricketacademy.png"
-                alt="EaseLearnAI"
+                alt="powerplaycricketacademy"
                 width={800}
                 height={600}
                 className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
@@ -608,7 +608,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
                 src="ayushmaan.png"
-                alt="EaseLearnAI"
+                alt="ayushmaan"
                 width={800}
                 height={600}
                 className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
@@ -628,7 +628,7 @@ function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
                 src="sharansmusicacademy.png"
-                alt="EaseLearnAI"
+                alt="sharansmusicacademy"
                 width={800}
                 height={600}
                 className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
