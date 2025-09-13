@@ -342,6 +342,56 @@ function LandingPage() {
         </div>
       </div>
 
+      {/* Rotating Logos Section */}
+      <div className="relative py-16 flex flex-col items-center justify-center">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-indigo-500/20 rounded-full blur-[100px] z-0"></div>
+        <h3 className="text-xl font-semibold text-white mb-8 z-10">Our Backings & Affiliations</h3>
+        <div className="w-full flex items-center justify-center overflow-hidden z-10">
+          {/* Logo paths array for 10 different logos */}
+          {(() => {
+            const logoPaths = [
+              "/logo1.png",
+              "/logo2.png",
+              "/logo3.png",
+              "/logo4.png",
+              "/logo5.png",
+              "/logo6.png",
+              "/logo7.png",
+              "/logo8.png",
+              "/logo9.png",
+              "/logo10.png"
+            ];
+            // Repeat logos 4 times for seamless infinite scroll
+            const logos = [...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths];
+            return (
+              <div className="logo-carousel flex gap-12 animate-logo-spin">
+                {logos.map((src, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div className="w-20 h-20 bg-gray-900/80 rounded-xl flex items-center justify-center shadow-lg border border-gray-800">
+                      <img src={src} alt={`Logo ${i % logoPaths.length + 1}`} className="w-12 h-12 object-contain opacity-80" />
+                    </div>
+                    <span className="text-gray-400 text-xs mt-2">Logo {i % logoPaths.length + 1}</span>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
+        </div>
+        <style jsx>{`
+          .logo-carousel {
+            min-width: 400%;
+            will-change: transform;
+          }
+          @keyframes logo-spin {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-75%); }
+          }
+          .animate-logo-spin {
+            animation: logo-spin 36s linear infinite;
+          }
+        `}</style>
+      </div>
+
       {/* Services Section */}
       <div id="services" className="py-20 relative">
         <div className="container mx-auto px-6">
@@ -464,26 +514,91 @@ function LandingPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16 text-white">Our Top Projects</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="/easelearnai.png"
-                alt="EaseLearnAI"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://easelearn.ai" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    EaseLearn.ai
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">AI App</p>
-                <p className="text-gray-400 mt-2">AI-powered personalized learning platform.</p>
-              </div>
-            </div>
+            {/* Portfolio Card with Popup */}
+            {(() => {
+              const [isModalOpen, setIsModalOpen] = useState(false);
+              return (
+                <>
+                  <div
+                    className="group relative overflow-hidden rounded-xl cursor-pointer"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                    <Image
+                      src="/easelearnai.png"
+                      alt="EaseLearnAI"
+                      width={800}
+                      height={600}
+                      className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        <span className="hover:text-indigo-400 transition-colors">
+                          EaseLearn.ai
+                        </span>
+                      </h3>
+                      <p className="text-gray-300 text-sm">AI App</p>
+                      <p className="text-gray-400 mt-2">AI-powered personalized learning platform.</p>
+                    </div>
+                  </div>
+                  {/* Modal Popup */}
+                  {isModalOpen && (
+                    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+                      <div className="relative bg-gray-950 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-6xl mx-4 overflow-hidden animate-fade-in border border-indigo-900/40">
+                        {/* Close Button */}
+                        <button
+                          className="absolute top-6 right-6 text-white bg-gray-900/80 rounded-full p-3 hover:bg-indigo-500 transition-colors z-10 shadow-lg"
+                          onClick={() => setIsModalOpen(false)}
+                          aria-label="Close"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                        {/* Left: Expanded Video (70%) */}
+                        <div className="md:w-[70%] w-full flex items-center justify-center bg-gradient-to-br from-indigo-900/60 to-purple-900/60 p-12">
+                          <video
+                            src="/easelearn.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            width={900}
+                            height={900}
+                            className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
+                            style={{ pointerEvents: 'none' }}
+                          />
+                        </div>
+                        {/* Right: Details (30%) */}
+                        <div className="md:w-[30%] w-full flex flex-col justify-center bg-gradient-to-br from-indigo-500/40 to-purple-500/40 p-10">
+                          <h2 className="text-4xl font-extrabold text-white mb-6 leading-tight">EaseLearn.ai</h2>
+                          <h4 className="text-xl font-semibold text-indigo-400 mb-4">AI App</h4>
+                          <p className="text-gray-300 mb-8 text-lg">AI-powered personalized learning platform. Developed and animated interactive elements and unique user experiences throughout EaseLearn.ai's site, an AI-powered education platform.</p>
+                          <a
+                            href="https://easelearn.ai"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block px-8 py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full font-bold text-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-xl"
+                          >
+                            Visit Website
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <style jsx>{`
+                    .animate-fade-in {
+                      animation: fadeInModal 0.3s ease;
+                    }
+                    @keyframes fadeInModal {
+                      from { opacity: 0; transform: scale(0.98); }
+                      to { opacity: 1; transform: scale(1); }
+                    }
+                  `}</style>
+                </>
+              );
+            })()}
             <div className="group relative overflow-hidden rounded-xl">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
               <Image
