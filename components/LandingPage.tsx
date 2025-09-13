@@ -167,14 +167,15 @@ function LandingPage() {
   }
 
   const NavLink = ({ section, label }: { section: string; label: string }) => (
-    <button
+    <span
       onClick={() => scrollToSection(section)}
-      className={`px-4 py-2 rounded-full transition-all duration-300 ${
-        activeSection === section ? "bg-indigo-500/10 text-indigo-400" : "text-gray-400 hover:text-indigo-400"
+      className={`cursor-pointer transition-colors duration-300 ${
+        activeSection === section ? "text-indigo-400" : "text-gray-400 hover:text-indigo-400"
       }`}
+      style={{ padding: '0 8px', fontWeight: 500 }}
     >
       {label}
-    </button>
+    </span>
   )
 
   return (
