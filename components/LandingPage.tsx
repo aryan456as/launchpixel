@@ -179,7 +179,7 @@ function LandingPage() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-950">
+  <div className="min-h-screen bg-gray-950 w-full max-w-full overflow-x-hidden">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         {/* Gradient Orbs */}
@@ -259,7 +259,7 @@ function LandingPage() {
 
       {/* Hero Section */}
       <div id="home" className="relative min-h-screen flex items-center overflow-hidden pt-16">
-        <div className="container mx-auto px-6 py-16 relative z-10">
+    <div className="container mx-auto w-full max-w-full px-0 md:px-6 py-16 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div
               className={`space-y-8 transform transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"} text-center md:text-left`}
@@ -519,6 +519,7 @@ function LandingPage() {
               const portfolioItems = [
                 {
                   title: "EaseLearn.ai",
+                  displayName: "EaseLearn AI",
                   type: "AI App",
                   description: "AI-powered personalized learning platform. Developed and animated interactive elements and unique user experiences throughout EaseLearn.ai's site, an AI-powered education platform.",
                   image: "/easelearnai.png",
@@ -527,6 +528,7 @@ function LandingPage() {
                 },
                 {
                   title: "LiverCure.org",
+                  displayName: "LiverCure",
                   type: "Web App",
                   description: "Healthcare platform for liver disease awareness and treatment.",
                   image: "/livercure.png",
@@ -535,6 +537,7 @@ function LandingPage() {
                 },
                 {
                   title: "MadhavFabrication.in",
+                  displayName: "Madhav Fabrication",
                   type: "Ecommerce",
                   description: "A Clothing Ecommerce platform for Women.",
                   image: "/madhavfabrications.png",
@@ -543,6 +546,7 @@ function LandingPage() {
                 },
                 {
                   title: "VibeCast.in",
+                  displayName: "VibeCast Innovations",
                   type: "Startup",
                   description: "VibeCast Innovations PVT LTD Deals in Digital Signages.",
                   image: "/vibecast.png",
@@ -551,6 +555,7 @@ function LandingPage() {
                 },
                 {
                   title: "VaranasionWheels.com",
+                  displayName: "Varanasi on Wheels",
                   type: "Tours & Travels Agency",
                   description: "A Comprehensive Tours & Travel Agency based in Varanasi.",
                   image: "/varanasionwheels.png",
@@ -559,6 +564,7 @@ function LandingPage() {
                 },
                 {
                   title: "SunilBookStore.store",
+                  displayName: "Sunil Book Store",
                   type: "Portfolio",
                   description: "Portfolio for Sunil Book Store making their presence on the internet and making them reach wider audience.",
                   image: "/sunilbookstore.png",
@@ -566,13 +572,15 @@ function LandingPage() {
                 },
                 {
                   title: "PowerPlayCricketAcademy.com",
-                  type: "_",
+                  displayName: "PowerPlay Cricket Academy",
+                  type: "Cricket Academy",
                   description: "Built the website for Power Play Cricket Academy, showcasing all of their Faculty and a Registration form so new candidates can directly register.",
                   image: "/cricketacademy.png",
                   link: "https://powerplaycricketacademy.com",
                 },
                 {
                   title: "AyushmaanHospitalKorba.net.in",
+                  displayName: "Ayushmaan Hospital",
                   type: "Hospital Management System",
                   description: "Built a Hospital Management System for Ayushmaan Hospital Korba to manage their patients and staff efficiently, Proper call to action buttons for ease of booking.",
                   image: "/ayushmaan.png",
@@ -580,7 +588,8 @@ function LandingPage() {
                 },
                 {
                   title: "sharansmusicacademy.com",
-                  type: "Music Academy website",
+                  displayName: "Sharans Music Academy",
+                  type: "Music Academy",
                   description: "Built a Music Academy Management System for Sharans Music Academy to manage their Students and staff efficiently, Proper call to action buttons for ease of booking.",
                   image: "/sharansmusicacademy.png",
                   link: "https://sharansmusicacademy.com",
@@ -611,17 +620,34 @@ function LandingPage() {
                           </span>
                         </h3>
                         <p className="text-gray-300 text-sm">{item.type}</p>
-                        <p className="text-gray-400 mt-2">{item.description}</p>
                       </div>
                     </div>
                   ))}
                   {/* Modal Popup */}
                   {openIndex !== -1 && (
                     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
-                      <div className="relative bg-gray-950 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-6xl mx-4 overflow-hidden animate-fade-in border border-indigo-900/40">
+                      <div className="portfolio-modal relative bg-gray-950 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full mx-2 md:mx-4 overflow-hidden animate-fade-in border border-indigo-900/40"
+                        style={{ width: '100%', maxWidth: '95vw', boxSizing: 'border-box', maxWidth: '900px' }}>
+                        <style>{`
+                          @media (max-width: 600px) {
+                            .portfolio-modal {
+                              max-width: 95vw !important;
+                              margin: 0 auto !important;
+                              flex-direction: column !important;
+                              padding: 0 !important;
+                            }
+                            .portfolio-modal-media {
+                              padding: 1rem !important;
+                              max-height: 30vh !important;
+                            }
+                            .portfolio-modal-details {
+                              padding: 1rem !important;
+                            }
+                          }
+                        `}</style>
                         {/* Close Button */}
                         <button
-                          className="absolute top-6 right-6 text-white bg-gray-900/80 rounded-full p-3 hover:bg-indigo-500 transition-colors z-10 shadow-lg"
+                          className="absolute top-4 right-4 md:top-6 md:right-6 text-white bg-gray-900/80 rounded-full p-3 hover:bg-indigo-500 transition-colors z-10 shadow-lg"
                           onClick={() => setOpenIndex(-1)}
                           aria-label="Close"
                         >
@@ -630,7 +656,7 @@ function LandingPage() {
                           </svg>
                         </button>
                         {/* Left: Expanded Media (70%) */}
-                        <div className="md:w-[70%] w-full flex items-center justify-center bg-gradient-to-br from-indigo-900/60 to-purple-900/60 p-12">
+                        <div className="w-full md:w-[70%] flex items-center justify-center bg-gradient-to-br from-indigo-900/60 to-purple-900/60 p-4 md:p-12">
                           {portfolioItems[openIndex].video ? (
                             <video
                               src={portfolioItems[openIndex].video}
@@ -641,7 +667,7 @@ function LandingPage() {
                               width={900}
                               height={900}
                               className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
-                              style={{ pointerEvents: 'none' }}
+                              style={{ pointerEvents: 'none', maxHeight: '40vh', maxWidth: '100%' }}
                             />
                           ) : (
                             <Image
@@ -650,19 +676,20 @@ function LandingPage() {
                               width={900}
                               height={900}
                               className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
+                              style={{ maxHeight: '40vh', maxWidth: '100%' }}
                             />
                           )}
                         </div>
                         {/* Right: Details (30%) */}
-                        <div className="md:w-[30%] w-full flex flex-col justify-center bg-gradient-to-br from-indigo-500/40 to-purple-500/40 p-10">
-                          <h2 className="text-4xl font-extrabold text-white mb-6 leading-tight">{portfolioItems[openIndex].title}</h2>
-                          <h4 className="text-xl font-semibold text-indigo-400 mb-4">{portfolioItems[openIndex].type}</h4>
-                          <p className="text-gray-300 mb-8 text-lg">{portfolioItems[openIndex].description}</p>
+                        <div className="w-full md:w-[30%] flex flex-col justify-center bg-gradient-to-br from-indigo-500/40 to-purple-500/40 p-4 md:p-10">
+                          <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-4 md:mb-6 leading-tight">{portfolioItems[openIndex].displayName}</h2>
+                          <h4 className="text-lg md:text-xl font-semibold text-indigo-400 mb-2 md:mb-4">{portfolioItems[openIndex].type}</h4>
+                          <p className="text-gray-300 mb-4 md:mb-8 text-base md:text-lg">{portfolioItems[openIndex].description}</p>
                           <a
                             href={portfolioItems[openIndex].link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-block px-8 py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full font-bold text-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-xl"
+                            className="inline-block px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full font-bold text-base md:text-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-xl"
                           >
                             Visit Website
                           </a>
@@ -682,168 +709,7 @@ function LandingPage() {
                 </>
               );
             })()}
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="livercure.png"
-                alt="Livercure"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://livercure.org" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    LiverCure.org
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">Web App</p>
-                <p className="text-gray-400 mt-2">Healthcare platform for liver disease awareness and treatment.</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="/madhavfabrications.png"
-                alt="Livercure"
-                width={800}
-                height={900}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://madhavfabrication.in" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    MadhavFabrication.in
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">Ecommerce</p>
-                <p className="text-gray-400 mt-2">A Clothing Ecommerce platform for Women</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="vibecast.png"
-                alt="vibecast"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://vibecast.in" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    VibeCast.in
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">Startup</p>
-                <p className="text-gray-400 mt-2">VibeCast Innovations PVT LTD Deals in Digital Signages</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="varanasionwheels.png"
-                alt="varanasionwheels"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://varanasionwheels.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    VaranasionWheels.com
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">Tours & Travels Agency</p>
-                <p className="text-gray-400 mt-2">A Comprehensive Tours & Travel Agency based in Varanasi</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="sunilbookstore.png"
-                alt="sunilbookstore"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://sunilbookstore.store" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    SunilBookStore.store
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">Portfolio</p>
-                <p className="text-gray-400 mt-2">Portfolio for Sunil Book Store making their presence on the internet and making them reach wider audience</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="cricketacademy.png"
-                alt="powerplaycricketacademy"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://powerplaycricketacademy.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    PowerPlayCricketAcademy.com
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">_ </p>
-                
-                <p className="text-black-400 mt-2">Built the website for Power Play Cricket Academy, showcasing all of their Faculty and a Registration form so new candidates can directly register.</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="ayushmaan.png"
-                alt="ayushmaan"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://ayushman-hospital2.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    AyushmaanHospitalKorba.net.in
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">Hospital Management System</p>
-                <p className="text-black-400 mt-2">Built a Hospital Management System for Ayushmaan Hospital Korba to manage their patients and staff efficiently, Proper call to action buttons for ease of booking.</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-              <Image
-                src="sharansmusicacademy.png"
-                alt="sharansmusicacademy"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  <a href="https://sharansmusicacademy.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
-                    sharansmusicacademy.com
-                  </a>
-                </h3>
-                <p className="text-gray-300 text-sm">Music Academy website</p>
-                <p className="text-gray-400 mt-2">Built a Music Academy Management System for Sharans Music Academy to manage their Students and staff efficiently, Proper call to action buttons for ease of booking.</p>
-              </div>
-            </div>
-
+            
 
           </div>
         </div>
