@@ -514,69 +514,152 @@ function LandingPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16 text-white">Our Top Projects</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Portfolio Card with Popup */}
+            {/* Portfolio Cards with Popups */}
             {(() => {
-              const [isModalOpen, setIsModalOpen] = useState(false);
+              const portfolioItems = [
+                {
+                  title: "EaseLearn.ai",
+                  type: "AI App",
+                  description: "AI-powered personalized learning platform. Developed and animated interactive elements and unique user experiences throughout EaseLearn.ai's site, an AI-powered education platform.",
+                  image: "/easelearnai.png",
+                  video: "/easelearn.mp4",
+                  link: "https://easelearn.ai",
+                },
+                {
+                  title: "LiverCure.org",
+                  type: "Web App",
+                  description: "Healthcare platform for liver disease awareness and treatment.",
+                  image: "/livercure.png",
+                  video: "/livercure.mp4",
+                  link: "https://livercure.org",
+                },
+                {
+                  title: "MadhavFabrication.in",
+                  type: "Ecommerce",
+                  description: "A Clothing Ecommerce platform for Women.",
+                  image: "/madhavfabrications.png",
+                  video: "/madhavfabrication.mp4",
+                  link: "https://madhavfabrication.in",
+                },
+                {
+                  title: "VibeCast.in",
+                  type: "Startup",
+                  description: "VibeCast Innovations PVT LTD Deals in Digital Signages.",
+                  image: "/vibecast.png",
+                  video: "/vibecast.mp4",
+                  link: "https://vibecast.in",
+                },
+                {
+                  title: "VaranasionWheels.com",
+                  type: "Tours & Travels Agency",
+                  description: "A Comprehensive Tours & Travel Agency based in Varanasi.",
+                  image: "/varanasionwheels.png",
+                  video: "/varanasionwheels.mp4",
+                  link: "https://varanasionwheels.com",
+                },
+                {
+                  title: "SunilBookStore.store",
+                  type: "Portfolio",
+                  description: "Portfolio for Sunil Book Store making their presence on the internet and making them reach wider audience.",
+                  image: "/sunilbookstore.png",
+                  link: "https://sunilbookstore.store",
+                },
+                {
+                  title: "PowerPlayCricketAcademy.com",
+                  type: "_",
+                  description: "Built the website for Power Play Cricket Academy, showcasing all of their Faculty and a Registration form so new candidates can directly register.",
+                  image: "/cricketacademy.png",
+                  link: "https://powerplaycricketacademy.com",
+                },
+                {
+                  title: "AyushmaanHospitalKorba.net.in",
+                  type: "Hospital Management System",
+                  description: "Built a Hospital Management System for Ayushmaan Hospital Korba to manage their patients and staff efficiently, Proper call to action buttons for ease of booking.",
+                  image: "/ayushmaan.png",
+                  link: "https://ayushman-hospital2.vercel.app/",
+                },
+                {
+                  title: "sharansmusicacademy.com",
+                  type: "Music Academy website",
+                  description: "Built a Music Academy Management System for Sharans Music Academy to manage their Students and staff efficiently, Proper call to action buttons for ease of booking.",
+                  image: "/sharansmusicacademy.png",
+                  link: "https://sharansmusicacademy.com",
+                },
+              ];
+              const [openIndex, setOpenIndex] = useState(-1);
               return (
                 <>
-                  <div
-                    className="group relative overflow-hidden rounded-xl cursor-pointer"
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <Image
-                      src="/easelearnai.png"
-                      alt="EaseLearnAI"
-                      width={800}
-                      height={600}
-                      className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                      <h3 className="text-xl font-semibold text-white mb-2">
-                        <span className="hover:text-indigo-400 transition-colors">
-                          EaseLearn.ai
-                        </span>
-                      </h3>
-                      <p className="text-gray-300 text-sm">AI App</p>
-                      <p className="text-gray-400 mt-2">AI-powered personalized learning platform.</p>
+                  {portfolioItems.map((item, idx) => (
+                    <div
+                      key={item.title}
+                      className="group relative overflow-hidden rounded-xl cursor-pointer"
+                      onClick={() => setOpenIndex(idx)}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={800}
+                        height={600}
+                        className="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                        <h3 className="text-xl font-semibold text-white mb-2">
+                          <span className="hover:text-indigo-400 transition-colors">
+                            {item.title}
+                          </span>
+                        </h3>
+                        <p className="text-gray-300 text-sm">{item.type}</p>
+                        <p className="text-gray-400 mt-2">{item.description}</p>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                   {/* Modal Popup */}
-                  {isModalOpen && (
+                  {openIndex !== -1 && (
                     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
                       <div className="relative bg-gray-950 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-6xl mx-4 overflow-hidden animate-fade-in border border-indigo-900/40">
                         {/* Close Button */}
                         <button
                           className="absolute top-6 right-6 text-white bg-gray-900/80 rounded-full p-3 hover:bg-indigo-500 transition-colors z-10 shadow-lg"
-                          onClick={() => setIsModalOpen(false)}
+                          onClick={() => setOpenIndex(-1)}
                           aria-label="Close"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                           </svg>
                         </button>
-                        {/* Left: Expanded Video (70%) */}
+                        {/* Left: Expanded Media (70%) */}
                         <div className="md:w-[70%] w-full flex items-center justify-center bg-gradient-to-br from-indigo-900/60 to-purple-900/60 p-12">
-                          <video
-                            src="/easelearn.mp4"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            width={900}
-                            height={900}
-                            className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
-                            style={{ pointerEvents: 'none' }}
-                          />
+                          {portfolioItems[openIndex].video ? (
+                            <video
+                              src={portfolioItems[openIndex].video}
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              width={900}
+                              height={900}
+                              className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
+                              style={{ pointerEvents: 'none' }}
+                            />
+                          ) : (
+                            <Image
+                              src={portfolioItems[openIndex].image}
+                              alt={portfolioItems[openIndex].title}
+                              width={900}
+                              height={900}
+                              className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
+                            />
+                          )}
                         </div>
                         {/* Right: Details (30%) */}
                         <div className="md:w-[30%] w-full flex flex-col justify-center bg-gradient-to-br from-indigo-500/40 to-purple-500/40 p-10">
-                          <h2 className="text-4xl font-extrabold text-white mb-6 leading-tight">EaseLearn.ai</h2>
-                          <h4 className="text-xl font-semibold text-indigo-400 mb-4">AI App</h4>
-                          <p className="text-gray-300 mb-8 text-lg">AI-powered personalized learning platform. Developed and animated interactive elements and unique user experiences throughout EaseLearn.ai's site, an AI-powered education platform.</p>
+                          <h2 className="text-4xl font-extrabold text-white mb-6 leading-tight">{portfolioItems[openIndex].title}</h2>
+                          <h4 className="text-xl font-semibold text-indigo-400 mb-4">{portfolioItems[openIndex].type}</h4>
+                          <p className="text-gray-300 mb-8 text-lg">{portfolioItems[openIndex].description}</p>
                           <a
-                            href="https://easelearn.ai"
+                            href={portfolioItems[openIndex].link}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block px-8 py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full font-bold text-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-xl"
