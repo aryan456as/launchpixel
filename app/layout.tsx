@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
-import { Geist, Azeret_Mono as Geist_Mono } from "next/font/google"
+import { Inter, Azeret_Mono as Geist_Mono } from "next/font/google"
 import "./globals.css"
 import FloatingButtons from "../components/FloatingButtons"
 import React from "react" // Import React
 
-const geistSans = Geist({
+const geistSans = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 })
