@@ -657,28 +657,28 @@ function LandingPage() {
                         </button>
                         {/* Left: Expanded Media (70%) */}
                         <div className="w-full md:w-[70%] flex items-center justify-center bg-gradient-to-br from-indigo-900/60 to-purple-900/60 p-4 md:p-12">
-                          {portfolioItems[openIndex].video ? (
-                            <video
-                              src={portfolioItems[openIndex].video}
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              width={900}
-                              height={900}
-                              className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
-                              style={{ pointerEvents: 'none', maxHeight: '40vh', maxWidth: '100%' }}
-                            />
-                          ) : (
-                            <Image
-                              src={portfolioItems[openIndex].image}
-                              alt={portfolioItems[openIndex].title}
-                              width={900}
-                              height={900}
-                              className="rounded-2xl shadow-2xl object-contain w-full h-auto border border-indigo-800/30"
-                              style={{ maxHeight: '40vh', maxWidth: '100%' }}
-                            />
-                          )}
+                          <div className="w-full aspect-auto md:aspect-video flex items-center justify-center">
+                            {portfolioItems[openIndex].video ? (
+                              <video
+                                src={portfolioItems[openIndex].video}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="rounded-2xl shadow-2xl border border-indigo-800/30 w-full h-full object-cover md:aspect-video"
+                                style={{ pointerEvents: 'none' }}
+                              />
+                            ) : (
+                              <Image
+                                src={portfolioItems[openIndex].image}
+                                alt={portfolioItems[openIndex].title}
+                                width={900}
+                                height={900}
+                                className="rounded-2xl shadow-2xl border border-indigo-800/30 w-full h-full object-cover md:aspect-video"
+                                style={{}}
+                              />
+                            )}
+                          </div>
                         </div>
                         {/* Right: Details (30%) */}
                         <div className="w-full md:w-[30%] flex flex-col justify-center bg-gradient-to-br from-indigo-500/40 to-purple-500/40 p-4 md:p-10">
