@@ -485,7 +485,7 @@ function LandingPage() {
                   type: "AI App",
                   description: "AI-powered personalized learning platform. Developed and animated interactive elements and unique user experiences throughout EaseLearn.ai's site, an AI-powered education platform.",
                   image: "/easelearnai.png",
-                  video: "/easelearn.mp4",
+                  video: "/easelearnai.mp4",
                   link: "https://easelearn.ai",
                 },
                 {
