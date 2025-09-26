@@ -207,7 +207,13 @@ function LandingPage() {
               <NavLink section="services" label="Services" />
               <NavLink section="portfolio" label="Portfolio" />
               <NavLink section="testimonials" label="Testimonials" />
-               {/*<NavLink section="blog" label="Blog" /> */}
+              <a
+                href="/blogs"
+                className="cursor-pointer transition-colors duration-300 text-gray-400 hover:text-indigo-400"
+                style={{ padding: '0 8px', fontWeight: 500 }}
+              >
+                Blog
+              </a>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="ml-4 px-6 py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300"
@@ -234,7 +240,7 @@ function LandingPage() {
       transition={{ duration: 0.3 }}
     >            <div className="flex flex-col items-center w-full justify-center min-h-screen px-6 bg-gray-950  blur-50 backdrop-blur-lg">
                 <nav className="container mx-auto flex flex-col items-center space-y-6 transform -translate-y-12 backdrop-blur-lg">
-                {["home", "services", "portfolio", "testimonials"/*, "blog"*/].map((section) => (
+                {["home", "services", "portfolio", "testimonials"].map((section) => (
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
@@ -245,6 +251,12 @@ function LandingPage() {
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </button>
                 ))}
+                <a
+                  href="/blogs"
+                  className="text-2xl font-semibold text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >
+                  Blog
+                </a>
                 <button
                   onClick={() => scrollToSection("contact")}
                   className="mt-8 px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 text-xl font-semibold"
@@ -341,57 +353,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-
-      {/* Rotating Logos Section */}
-      <div className="relative py-16 flex flex-col items-center justify-center">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-indigo-500/20 rounded-full blur-[100px] z-0"></div>
-        <h3 className="text-xl font-semibold text-white mb-8 z-10">Our Backings & Affiliations</h3>
-        <div className="w-full flex items-center justify-center overflow-hidden z-10">
-          {/* Logo paths array for 10 different logos */}
-          {(() => {
-            const logoPaths = [
-              "/logo1.png",
-              "/logo2.png",
-              "/logo3.png",
-              "/logo4.png",
-              "/logo5.png",
-              "/logo6.png",
-              "/logo7.png",
-              "/logo8.png",
-              "/logo9.png",
-              "/logo10.png"
-            ];
-            // Repeat logos 4 times for seamless infinite scroll
-            const logos = [...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths, ...logoPaths];
-            return (
-              <div className="logo-carousel flex gap-12 animate-logo-spin">
-                {logos.map((src, i) => (
-                  <div key={i} className="flex flex-col items-center">
-                    <div className="w-20 h-20 bg-gray-900/80 rounded-xl flex items-center justify-center shadow-lg border border-gray-800">
-                      <img src={src} alt={`Logo ${i % logoPaths.length + 1}`} className="w-12 h-12 object-contain opacity-80" />
-                    </div>
-                    <span className="text-gray-400 text-xs mt-2">Logo {i % logoPaths.length + 1}</span>
-                  </div>
-                ))}
-              </div>
-            );
-          })()}
-        </div>
-        <style jsx>{`
-          .logo-carousel {
-            min-width: 400%;
-            will-change: transform;
-          }
-          @keyframes logo-spin {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-75%); }
-          }
-          .animate-logo-spin {
-            animation: logo-spin 36s linear infinite;
-          }
-        `}</style>
-      </div>
-
+     
       {/* Services Section */}
       <div id="services" className="py-20 relative">
         <div className="container mx-auto px-6">
