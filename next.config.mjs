@@ -1,5 +1,3 @@
-
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
@@ -11,13 +9,19 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    formats: ['image/webp'],
   },
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  // Performance optimizations
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: true,
+  // Optimize for static export
+  trailingSlash: false,
 }
-
 
 export default nextConfig

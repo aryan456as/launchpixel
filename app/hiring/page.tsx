@@ -3,6 +3,13 @@
 import React, { useState } from 'react'
 import { Sparkles, ArrowRight, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import Footer from "../../components/Footer"
+import dynamic from "next/dynamic"
+
+const Antigravity = dynamic(() => import('../../components/Antigravity'), { ssr: false })
+
+// Note: Metadata is set in layout.tsx for client components
+// SEO: Campus Ambassador Program, Internship Opportunities, Remote Work, Student Jobs
 
 export default function CampusAmbassadorForm() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -135,16 +142,26 @@ export default function CampusAmbassadorForm() {
     return (
         <div className="min-h-screen bg-gray-950">
 
-        {/* Animated Background */}
+        {/* Antigravity Background */}
         <div className="fixed inset-0 z-0">
-        {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] animate-pulse delay-2000"></div>
-
-        {/* Pulsating Grid Beam Effect */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-10 animate-beam"></div>
-      </div>
+          <Antigravity
+            count={400}
+            magnetRadius={13}
+            ringRadius={10}
+            waveSpeed={0.6}
+            waveAmplitude={1}
+            particleSize={1.5}
+            lerpSpeed={0.05}
+            color="#5227FF"
+            autoAnimate
+            particleVariance={1}
+            rotationSpeed={0}
+            depthFactor={1}
+            pulseSpeed={3}
+            particleShape="sphere"
+            fieldStrength={10}
+          />
+        </div>
       {/* Header Section */}
       <div className="backdrop-blur-sm top-0 z-10 p-4 pb-2">
         <div className="flex flex-col items-center text-center">
@@ -181,16 +198,26 @@ export default function CampusAmbassadorForm() {
   return (
     <div className="min-h-screen bg-gray-950">
 
-        {/* Animated Background */}
+        {/* Antigravity Background */}
         <div className="fixed inset-0 z-0">
-        {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] animate-pulse delay-2000"></div>
-
-        {/* Pulsating Grid Beam Effect */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-10 animate-beam"></div>
-      </div>
+          <Antigravity
+            count={400}
+            magnetRadius={13}
+            ringRadius={10}
+            waveSpeed={0.6}
+            waveAmplitude={1}
+            particleSize={1.5}
+            lerpSpeed={0.05}
+            color="#5227FF"
+            autoAnimate
+            particleVariance={1}
+            rotationSpeed={0}
+            depthFactor={1}
+            pulseSpeed={3}
+            particleShape="sphere"
+            fieldStrength={10}
+          />
+        </div>
       {/* Header Section */}
       <div className="backdrop-blur-sm top-0 z-10 p-4 pb-2">
         <div className="flex flex-col items-center text-center">
@@ -203,23 +230,23 @@ export default function CampusAmbassadorForm() {
         </div>
       </div>
       
-      <div className="relative z-10 container mx-auto px-4 py-12">
+      <div className="relative z-10 container mx-auto px-4 py-8 sm:py-12">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-white mb-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
               Join Launch Pixel as a
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 ml-2">
                 Campus Ambassador
               </span>
             </h1>
-            <p className="text-lg text-gray-300 mb-8">
+            <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 px-4">
               Gain valuable experience, expand your professional network, and earn commissions while representing Launch Pixel!
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              <div className="p-6 rounded-xl bg-indigo-800/20 backdrop-blur-sm border border-indigo-700/30">
-                <h3 className="text-xl font-bold text-white mb-4">Your Responsibilities</h3>
-                <ul className="text-gray-300 space-y-3 text-left">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
+              <div className="p-4 sm:p-6 rounded-xl bg-indigo-800/20 backdrop-blur-sm border border-indigo-700/30">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">Your Responsibilities</h3>
+                <ul className="text-gray-300 space-y-2 sm:space-y-3 text-left text-sm sm:text-base">
                   <li className="flex items-start gap-2">
                     <Sparkles className="w-5 h-5 text-indigo-400 mt-1 flex-shrink-0" />
                     <span>Lead Generation & Outreach to US-based clients</span>
@@ -247,9 +274,9 @@ export default function CampusAmbassadorForm() {
                 </ul>
               </div>
               
-              <div className="p-6 rounded-xl bg-indigo-800/20 backdrop-blur-sm border border-indigo-700/30">
-                <h3 className="text-xl font-bold text-white mb-4">What You Get</h3>
-                <ul className="text-gray-300 space-y-3 text-left">
+              <div className="p-4 sm:p-6 rounded-xl bg-indigo-800/20 backdrop-blur-sm border border-indigo-700/30">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">What You Get</h3>
+                <ul className="text-gray-300 space-y-2 sm:space-y-3 text-left text-sm sm:text-base">
                   <li className="flex items-start gap-2">
                     <Sparkles className="w-5 h-5 text-indigo-400 mt-1 flex-shrink-0" />
                     <span>Work from Anywhere – 100% remote, flexible hours</span>
@@ -275,7 +302,7 @@ export default function CampusAmbassadorForm() {
             </div>
           </div>
           
-          <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 max-w-xl mx-auto">
             <div>
               <input
                 type="text"
@@ -386,13 +413,15 @@ export default function CampusAmbassadorForm() {
             </button>
           </form>
           
-          <div className="mt-12 text-center">
-            <p className="text-gray-400">
+          <div className="mt-8 sm:mt-12 text-center">
+            <p className="text-sm sm:text-base text-gray-400 px-4">
               Questions about the program? Email us at <span className="text-indigo-400">team@launchpixel.in</span>
             </p>
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   )
 }

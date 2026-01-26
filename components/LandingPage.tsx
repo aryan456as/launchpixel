@@ -233,13 +233,13 @@ function LandingPage() {
         {/* Mobile menu */}
         {isMenuOpen && (
     <motion.div
-    className="fixed top-[50px] md:top-[60px] left-0 w-full h-[calc(100vh-50px)] md:h-[calc(100vh-60px)] bg-gray-50 z-40 flex items-center justify-center overflow-y-auto shadow-lg"
+    className="fixed top-16 left-0 w-full h-[calc(100vh-64px)] bg-gray-950/95 z-[60] flex items-center justify-center overflow-y-auto shadow-lg backdrop-blur-xl"
     initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
-    >            <div className="flex flex-col items-center w-full justify-center min-h-screen px-6 bg-gray-950  blur-50 backdrop-blur-lg">
-                <nav className="container mx-auto flex flex-col items-center space-y-6 transform -translate-y-12 backdrop-blur-lg">
+    >            <div className="flex flex-col items-center w-full justify-center min-h-full px-6 py-8">
+                <nav className="container mx-auto flex flex-col items-center space-y-6">
                 {["home", "services", "portfolio", "testimonials"].map((section) => (
                   <button
                     key={section}
@@ -270,36 +270,36 @@ function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <div id="home" className="relative min-h-screen flex items-center overflow-hidden pt-16">
-    <div className="container mx-auto w-full max-w-full px-0 md:px-6 py-16 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20 sm:pt-24 md:pt-16">
+    <div className="container mx-auto w-full max-w-full px-4 sm:px-6 py-12 sm:py-16 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div
-              className={`space-y-8 transform transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"} text-center md:text-left`}
+              className={`space-y-6 sm:space-y-8 transform transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"} text-center md:text-left`}
             >
               <div className="inline-block">
-                <div className="flex items-center gap-2 text-indigo-400 bg-indigo-950/50 rounded-full px-4 py-2 mb-6 backdrop-blur-sm border border-indigo-800/50">
-                  <span className="relative flex h-3 w-3">
+                <div className="flex items-center gap-2 text-indigo-400 bg-indigo-950/50 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 backdrop-blur-sm border border-indigo-800/50 text-xs sm:text-sm">
+                  <span className="relative flex h-2 w-2 sm:h-3 sm:w-3">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 sm:h-3 sm:w-3 bg-indigo-500"></span>
                   </span>
                   Innovating the Future of Software
                 </div>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Innovating{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
                   Software
                 </span>{" "}
                 Solutions
               </h1>
-              <p className="text-xl text-gray-300">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300">
                 Transform Your Ideas Into Digital Reality. We help businesses transform their ideas into powerful
                 digital solutions through innovative software development and strategic consulting.
               </p>
-              <div className="flex gap-4 items-center justify-center md:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center md:justify-start">
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-2"
+                  className="group px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-2 text-sm sm:text-base w-full sm:w-auto justify-center"
                 >
                   Contact us
                   <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -329,25 +329,25 @@ function LandingPage() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 gap-8 text-center">
-            <div className="p-8 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-colors">
+      <div className="py-12 sm:py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 gap-4 sm:gap-8 text-center">
+            <div className="p-4 sm:p-8 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
                   {clientCount}+
                 </div>
-                <div className="text-gray-400 mt-2">Happy Clients</div>
+                <div className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base">Happy Clients</div>
               </div>
             </div>
-            <div className="p-8 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-colors">
+            <div className="p-4 sm:p-8 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
                   {projectCount}+
                 </div>
-                <div className="text-gray-400 mt-2">Projects Completed</div>
+                <div className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base">Projects Completed</div>
               </div>
             </div>
           </div>
@@ -355,112 +355,112 @@ function LandingPage() {
       </div>
      
       {/* Services Section */}
-      <div id="services" className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-16 text-white">Our Services</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+      <div id="services" className="py-12 sm:py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 sm:mb-16 text-white">Our Services</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <Code2 className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Web/App Development</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">Web/App Development</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Custom applications built with modern technologies and best practices.
                 </p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <Smartphone className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <Smartphone className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Brand Stratergy</h3>
-                <p className="text-gray-400">Native and cross-platform mobile applications for iOS and Android.</p>
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">Brand Stratergy</h3>
+                <p className="text-sm sm:text-base text-gray-400">Native and cross-platform mobile applications for iOS and Android.</p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <Brain className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">AI Apps</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">AI Apps</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Intelligent applications powered by cutting-edge AI and machine learning.
                 </p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <Book className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <Book className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Guidelines & Systems</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">Guidelines & Systems</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Intelligent applications powered by cutting-edge AI and machine learning.
                 </p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <IdCard className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <IdCard className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Identity Design</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">Identity Design</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Intelligent applications powered by cutting-edge AI and machine learning.
                 </p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <LayoutDashboard className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <LayoutDashboard className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">UI Design & UX stratergy</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">UI Design & UX stratergy</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Intelligent applications powered by cutting-edge AI and machine learning.
                 </p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <PenTool className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <PenTool className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Prototyping</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">Prototyping</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Intelligent applications powered by cutting-edge AI and machine learning.
                 </p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <BarChart2 className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <BarChart2 className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">SEO Strategies</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">SEO Strategies</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Intelligent applications powered by cutting-edge AI and machine learning.
                 </p>
               </div>
             </div>
-            <div className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-4">
-                  <IdCard className="w-6 h-6 text-indigo-400" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
+                  <IdCard className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Identity & Branding</h3>
-                <p className="text-gray-400">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-white">Identity & Branding</h3>
+                <p className="text-sm sm:text-base text-gray-400">
                   Intelligent applications powered by cutting-edge AI and machine learning.
                 </p>
               </div>
@@ -472,10 +472,10 @@ function LandingPage() {
       </div>
 
       {/* Portfolio Section */}
-      <div id="portfolio" className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-16 text-white">Our Top Projects</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <div id="portfolio" className="py-12 sm:py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 sm:mb-16 text-white">Our Top Projects</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {/* Portfolio Cards with Popups */}
             {(() => {
               const portfolioItems = [
@@ -587,14 +587,22 @@ function LandingPage() {
                   ))}
                   {/* Modal Popup */}
                   {openIndex !== -1 && (
-                    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
-                      <div className="portfolio-modal relative bg-gray-950 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full mx-2 md:mx-4 overflow-hidden animate-fade-in border border-indigo-900/40"
-                        style={{ width: '100%', maxWidth: '95vw', boxSizing: 'border-box', maxWidth: '900px' }}>
+                    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-3 sm:p-4">
+                      <div className="portfolio-modal relative bg-gray-950 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full overflow-hidden animate-fade-in border border-indigo-900/40 max-w-[95vw] sm:max-w-[90vw] md:max-w-[900px] max-h-[90vh] overflow-y-auto">
                         <style>{`
-                          @media (max-width: 600px) {
+                          @media (max-width: 768px) {
                             .portfolio-modal {
-                              max-width: 95vw !important;
-                              margin: 0 auto !important;
+                              flex-direction: column !important;
+                            }
+                            .portfolio-modal > div:first-of-type {
+                              width: 100% !important;
+                              min-height: 200px !important;
+                            }
+                            .portfolio-modal > div:last-of-type {
+                              width: 100% !important;
+                            }
+                          }
+                        `}</style>
                               flex-direction: column !important;
                               padding: 0 !important;
                             }
@@ -609,17 +617,17 @@ function LandingPage() {
                         `}</style>
                         {/* Close Button */}
                         <button
-                          className="absolute top-4 right-4 md:top-6 md:right-6 text-white bg-gray-900/80 rounded-full p-3 hover:bg-indigo-500 transition-colors z-10 shadow-lg"
+                          className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 text-white bg-gray-900/80 rounded-full p-2 sm:p-3 hover:bg-indigo-500 transition-colors z-10 shadow-lg"
                           onClick={() => setOpenIndex(-1)}
                           aria-label="Close"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                           </svg>
                         </button>
                         {/* Left: Expanded Media (70%) */}
-                        <div className="w-full md:w-[70%] flex items-center justify-center bg-gradient-to-br from-indigo-900/60 to-purple-900/60 p-4 md:p-12">
-                          <div className="w-full aspect-auto md:aspect-video flex items-center justify-center">
+                        <div className="w-full md:w-[70%] flex items-center justify-center bg-gradient-to-br from-indigo-900/60 to-purple-900/60 p-4 sm:p-6 md:p-12">
+                          <div className="w-full aspect-video flex items-center justify-center">
                             {portfolioItems[openIndex].video ? (
                               <video
                                 src={portfolioItems[openIndex].video}
@@ -627,7 +635,7 @@ function LandingPage() {
                                 loop
                                 muted
                                 playsInline
-                                className="rounded-2xl shadow-2xl border border-indigo-800/30 w-full h-full object-cover md:aspect-video"
+                                className="rounded-xl sm:rounded-2xl shadow-2xl border border-indigo-800/30 w-full h-full object-cover"
                                 style={{ pointerEvents: 'none' }}
                               />
                             ) : (
@@ -636,22 +644,22 @@ function LandingPage() {
                                 alt={portfolioItems[openIndex].title}
                                 width={900}
                                 height={900}
-                                className="rounded-2xl shadow-2xl border border-indigo-800/30 w-full h-full object-cover md:aspect-video"
+                                className="rounded-xl sm:rounded-2xl shadow-2xl border border-indigo-800/30 w-full h-full object-cover"
                                 style={{}}
                               />
                             )}
                           </div>
                         </div>
                         {/* Right: Details (30%) */}
-                        <div className="w-full md:w-[30%] flex flex-col justify-center bg-gradient-to-br from-indigo-500/40 to-purple-500/40 p-4 md:p-10">
-                          <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-4 md:mb-6 leading-tight">{portfolioItems[openIndex].displayName}</h2>
-                          <h4 className="text-lg md:text-xl font-semibold text-indigo-400 mb-2 md:mb-4">{portfolioItems[openIndex].type}</h4>
-                          <p className="text-gray-300 mb-4 md:mb-8 text-base md:text-lg">{portfolioItems[openIndex].description}</p>
+                        <div className="w-full md:w-[30%] flex flex-col justify-center bg-gradient-to-br from-indigo-500/40 to-purple-500/40 p-4 sm:p-6 md:p-10">
+                          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-3 sm:mb-4 md:mb-6 leading-tight">{portfolioItems[openIndex].displayName}</h2>
+                          <h4 className="text-base sm:text-lg md:text-xl font-semibold text-indigo-400 mb-2 sm:mb-3 md:mb-4">{portfolioItems[openIndex].type}</h4>
+                          <p className="text-gray-300 mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg">{portfolioItems[openIndex].description}</p>
                           <a
                             href={portfolioItems[openIndex].link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-block px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full font-bold text-base md:text-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-xl"
+                            className="inline-block px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-xl text-center"
                           >
                             Visit Website
                           </a>
@@ -680,10 +688,10 @@ function LandingPage() {
       </div>
 
       {/* Testimonials Section */}
-      <div id="testimonials" className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-16 text-white">What Our Clients Say</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <div id="testimonials" className="py-12 sm:py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 sm:mb-16 text-white">What Our Clients Say</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {[
               {
                 name: "Akansh Gupta",
@@ -706,11 +714,11 @@ function LandingPage() {
             ].map((testimonial, index) => (
               <div
                 key={index}
-                className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group"
+                className="p-4 sm:p-6 md:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-colors relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
                 <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                     <div className="relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full blur-md opacity-50"></div>
                       <Image
@@ -718,15 +726,15 @@ function LandingPage() {
                         alt={testimonial.name}
                         width={64}
                         height={64}
-                        className="w-16 h-16 rounded-full object-cover relative z-10 border-2 border-indigo-500/50"
+                        className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-indigo-500/50"
                       />
                     </div>
                     <div>
-                      <div className="font-semibold text-white">{testimonial.name}</div>
-                      <div className="text-indigo-400 text-sm">{testimonial.role}</div>
+                      <div className="font-semibold text-white text-sm sm:text-base">{testimonial.name}</div>
+                      <div className="text-indigo-400 text-xs sm:text-sm">{testimonial.role}</div>
                     </div>
                   </div>
-                  <p className="text-gray-400">{testimonial.text}</p>
+                  <p className="text-gray-400 text-sm sm:text-base">{testimonial.text}</p>
                 </div>
               </div>
             ))}
@@ -735,20 +743,20 @@ function LandingPage() {
       </div>
 
       {/* Contact Section */}
-      <div id="contact" className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div id="contact" className="py-12 sm:py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-8 text-white">Let's Talk</h2>
-              <p className="text-gray-400 mb-8">Ready to start your next project? Get in touch with us today.</p>
-              <form className="space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">Let's Talk</h2>
+              <p className="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base">Ready to start your next project? Get in touch with us today.</p>
+              <form className="space-y-4 sm:space-y-6">
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                 />
                 <input
                   type="email"
@@ -756,7 +764,7 @@ function LandingPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Your Email"
-                  className="w-full px-4 py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                 />
                 <input
                   type="text"
@@ -764,18 +772,18 @@ function LandingPage() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Your Message"
-                  className="w-full px-4 py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-full bg-gray-900/50 backdrop-blur-lg border border-gray-800 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                 />
                 <button 
                   onClick={handleSubmit}
-                  disabled={isLoading} // Disable button while loading
-                  className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-2"
+                  disabled={isLoading}
+                  className="group px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-2 text-sm sm:text-base w-full sm:w-auto justify-center"
                 >
                   {isLoading ? (
-      <div className="spinner-border animate-spin border-t-2 border-b-2 border-white w-6 h-6 border-solid rounded-full"></div> // You can replace this with a spinner of your choice
+      <div className="spinner-border animate-spin border-t-2 border-b-2 border-white w-5 h-5 sm:w-6 sm:h-6 border-solid rounded-full"></div>
     ) : (
      <>Send Message
-      <MessageSquare size={20} className="group-hover:translate-x-1 transition-transform" /></>
+      <MessageSquare size={18} className="sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" /></>
     )}
           
                 </button>
@@ -792,7 +800,7 @@ function LandingPage() {
                   playsInline
                   width={800}
                   height={400}
-                  className="rounded-2xl shadow-2xl relative z-10 border border-gray-800"
+                  className="rounded-2xl shadow-2xl relative z-10 border border-gray-800 w-full"
                   aria-label="Contact illustration"
                 />
               </div>
@@ -802,26 +810,26 @@ function LandingPage() {
       </div>
 
       {/* Footer */}
-      <footer className="relative bg-gray-950/80 backdrop-blur-lg text-white py-12 border-t border-gray-800">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8">
+      <footer className="relative bg-gray-950/80 backdrop-blur-lg text-white py-8 sm:py-12 border-t border-gray-800">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div>
-              <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+              <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
                 LaunchPixel
               </h3>
-              <p className="text-gray-400">Transforming ideas into powerful digital solutions.</p>
+              <p className="text-gray-400 text-sm sm:text-base">Transforming ideas into powerful digital solutions.</p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white"> </h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base"> </h4>
+              <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-sm sm:text-base">
                 <li className="hover:text-indigo-400 transition-colors cursor-pointer"></li>
                 <li className="hover:text-indigo-400 transition-colors cursor-pointer">  </li>
                 <li className="hover:text-indigo-400 transition-colors cursor-pointer"></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Quick Links</h4>
+              <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-sm sm:text-base">
                 <li>
                   <a href="/hiring" className="hover:text-indigo-400 transition-colors cursor-pointer">We are Hiring</a>
                 </li>
@@ -831,20 +839,102 @@ function LandingPage() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">Connect</h4>
-              <div className="flex gap-4">
-                <Twitter className="w-6 h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
-                <Linkedin className="w-6 h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
-                <Github className="w-6 h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
-                <Discord className="w-6 h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
+              <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Connect</h4>
+              <div className="flex gap-3 sm:gap-4">
+                <Twitter className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
+                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
+                <Github className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
+                <Discord className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 hover:text-indigo-400 transition-colors cursor-pointer" />
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-xs sm:text-sm">
             © 2025 LaunchPixel. All rights reserved.
           </div>
         </div>
       </footer>
+
+      {/* Structured Data for SEO and LLM Optimization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "LaunchPixel",
+            "alternateName": "Launch Pixel",
+            "url": "https://launchpixel.com",
+            "logo": "https://launchpixel.com/logo.gif",
+            "description": "Leading AI automation and digital solutions company specializing in web development, AI applications, and business transformation",
+            "foundingDate": "2019",
+            "slogan": "Innovating Software Solutions",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Customer Service",
+              "email": "viveksharma.network@gmail.com",
+              "availableLanguage": ["English"]
+            },
+            "sameAs": [
+              "https://twitter.com/launchpixel",
+              "https://linkedin.com/company/launchpixel",
+              "https://github.com/launchpixel"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "IN"
+            },
+            "areaServed": "Worldwide",
+            "knowsAbout": [
+              "AI Automation",
+              "Web Development",
+              "Mobile App Development",
+              "Machine Learning",
+              "Digital Transformation",
+              "Brand Strategy",
+              "UI/UX Design",
+              "SEO Optimization",
+              "Business Automation",
+              "Software Development"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Digital Solutions",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "AI Automation",
+                    "description": "Intelligent automation solutions using AI and machine learning"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Web Development",
+                    "description": "Custom web applications with modern technologies"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Mobile App Development",
+                    "description": "Native and cross-platform mobile applications"
+                  }
+                }
+              ]
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "50",
+              "bestRating": "5"
+            }
+          })
+        }}
+      />
     </div>
   )
 }

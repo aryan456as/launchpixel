@@ -1,81 +1,157 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { X } from "lucide-react"
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const navItems = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/blogs", label: "Blog" },
+    { href: "/hiring", label: "Hiring" },
+  ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950 backdrop-blur-lg border-b border-gray-800">
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/">
-            <Image
-              src="/logo.gif"
-              alt="LaunchPixel Logo"
-              width={90}
-              height={90}
-              className="rounded-full"
-            />
-          </Link>
-          <div className="hidden lg:flex items-center gap-2 justify-end">
-            <Link href="/" className="cursor-pointer transition-colors duration-300 text-gray-400 hover:text-indigo-400" style={{ padding: '0 8px', fontWeight: 500 }}>
-              Home
+    <>
+      <nav className="fixed top-3 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+        <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-full px-3 sm:px-6 py-2 sm:py-0 shadow-2xl">
+          {/* Floating gradient orb effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-xl -z-10" />
+          
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="relative group">
+              <Image
+                src="/logo.gif"
+                alt="LaunchPixel"
+                width={98}
+                height={98}
+                className="rounded-full relative z-10 hover:scale-105 transition-transform w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] md:w-[98px] md:h-[98px]"
+              />
             </Link>
-            <Link href="/#services" className="cursor-pointer transition-colors duration-300 text-gray-400 hover:text-indigo-400" style={{ padding: '0 8px', fontWeight: 500 }}>
-              Services
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative px-4 py-1.5 text-sm font-medium transition-all duration-300 group ${
+                    pathname === item.href
+                      ? "text-white"
+                      : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  {pathname === item.href && (
+                    <span className="absolute inset-0 bg-white/10 rounded-full" />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-indigo-400 to-purple-400 group-hover:w-3/4 transition-all duration-300" />
+                </Link>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <Link
+              href="/contact"
+              className="hidden lg:block relative px-7 py-3 text-base font-semibold text-white overflow-hidden rounded-full group"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 group-hover:scale-105 transition-transform" />
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity blur-xl" />
+              <span className="relative z-10">Contact</span>
             </Link>
-            <Link href="/#portfolio" className="cursor-pointer transition-colors duration-300 text-gray-400 hover:text-indigo-400" style={{ padding: '0 8px', fontWeight: 500 }}>
-              Portfolio
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden relative w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition-colors bg-gray-800/50 rounded-full"
+              aria-label="Toggle menu"
+            >
+              <div className="flex flex-col gap-1.5 w-5">
+                <span className={`h-0.5 w-full bg-current transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+                <span className={`h-0.5 w-full bg-current transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`} />
+                <span className={`h-0.5 w-full bg-current transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              </div>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[100] bg-gray-950">
+          {/* Header with Logo and Close */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-800">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>
+              <Image
+                src="/logo.gif"
+                alt="LaunchPixel"
+                width={60}
+                height={60}
+                className="rounded-full"
+              />
             </Link>
-            <Link href="/#testimonials" className="cursor-pointer transition-colors duration-300 text-gray-400 hover:text-indigo-400" style={{ padding: '0 8px', fontWeight: 500 }}>
-              Testimonials
-            </Link>
-            <Link href="/blogs" className="cursor-pointer transition-colors duration-300 text-indigo-400" style={{ padding: '0 8px', fontWeight: 500 }}>
-              Blog
-            </Link>
-            <Link href="/#contact" className="ml-4 px-6 py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300">
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-white transition-colors bg-gray-800/50 rounded-full"
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Menu Items */}
+          <div className="flex flex-col p-6 gap-3 overflow-y-auto h-[calc(100vh-100px)]">
+            {navItems.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`w-full text-left py-4 px-6 text-lg font-semibold rounded-xl transition-all duration-300 ${
+                  pathname === item.href
+                    ? "bg-gradient-to-r from-indigo-600/20 to-purple-600/20 text-white border border-indigo-500/30"
+                    : "text-gray-300 hover:text-white hover:bg-gray-800/50 border border-gray-800"
+                }`}
+                style={{
+                  animation: `fadeInUp 0.3s ease-out ${index * 0.05}s both`,
+                }}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full text-center mt-4 px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-xl hover:opacity-90 transition-all shadow-lg shadow-indigo-600/20"
+              style={{
+                animation: `fadeInUp 0.3s ease-out ${navItems.length * 0.05}s both`,
+              }}
+            >
               Contact Us
             </Link>
           </div>
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-gray-400 hover:text-white z-[101] relative"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="fixed top-[50px] md:top-[60px] left-0 w-full h-[calc(100vh-50px)] md:h-[calc(100vh-60px)] bg-gray-50 z-40 flex items-center justify-center overflow-y-auto shadow-lg">
-          <div className="flex flex-col items-center w-full justify-center min-h-screen px-6 bg-gray-950 blur-50 backdrop-blur-lg">
-            <nav className="container mx-auto flex flex-col items-center space-y-6 transform -translate-y-12 backdrop-blur-lg">
-              <Link href="/" className="text-2xl font-semibold text-gray-400 hover:text-indigo-400 transition-colors duration-300">
-                Home
-              </Link>
-              <Link href="/#services" className="text-2xl font-semibold text-gray-400 hover:text-indigo-400 transition-colors duration-300">
-                Services
-              </Link>
-              <Link href="/#portfolio" className="text-2xl font-semibold text-gray-400 hover:text-indigo-400 transition-colors duration-300">
-                Portfolio
-              </Link>
-              <Link href="/#testimonials" className="text-2xl font-semibold text-gray-400 hover:text-indigo-400 transition-colors duration-300">
-                Testimonials
-              </Link>
-              <Link href="/blogs" className="text-2xl font-semibold text-indigo-400 transition-colors duration-300">
-                Blog
-              </Link>
-              <Link href="/#contact" className="mt-8 px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 text-xl font-semibold">
-                Contact Us
-              </Link>
-            </nav>
-          </div>
         </div>
       )}
-    </nav>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </>
   )
 }

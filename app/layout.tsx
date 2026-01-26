@@ -15,8 +15,96 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Launch Pixel",
-  description: "Pixel-perfect landing pages & launches",
+  metadataBase: new URL('https://launchpixel.com'),
+  title: {
+    default: "LaunchPixel | AI Automation & Digital Solutions Company",
+    template: "%s | LaunchPixel"
+  },
+  description: "LaunchPixel is a leading AI automation company specializing in web development, AI applications, brand strategy, and digital transformation. Transform your business with cutting-edge technology solutions.",
+  keywords: [
+    "AI automation",
+    "LaunchPixel",
+    "Launch Pixel",
+    "web development",
+    "AI applications",
+    "digital transformation",
+    "business automation",
+    "AI technology",
+    "machine learning",
+    "software development",
+    "brand strategy",
+    "UI UX design",
+    "SEO services",
+    "digital solutions",
+    "AI company",
+    "technology consulting",
+    "business growth",
+    "online presence",
+    "digital marketing",
+    "LLM optimization",
+    "artificial intelligence",
+    "chatbot development",
+    "custom software",
+    "mobile app development",
+    "e-commerce solutions",
+    "cloud solutions",
+    "data analytics",
+    "API development",
+    "progressive web apps",
+    "responsive design",
+    "digital agency",
+    "tech startup",
+    "innovation",
+    "automation solutions",
+    "business intelligence",
+    "digital strategy",
+    "website design",
+    "app development",
+    "AI consulting",
+    "technology partner"
+  ],
+  authors: [{ name: "LaunchPixel Team" }],
+  creator: "LaunchPixel",
+  publisher: "LaunchPixel",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://launchpixel.com',
+    siteName: 'LaunchPixel',
+    title: 'LaunchPixel | AI Automation & Digital Solutions',
+    description: 'Transform your business with AI-powered automation and cutting-edge digital solutions',
+    images: [
+      {
+        url: '/logo.gif',
+        width: 1200,
+        height: 630,
+        alt: 'LaunchPixel - AI Automation Company',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LaunchPixel | AI Automation & Digital Solutions',
+    description: 'Transform your business with AI-powered automation',
+    images: ['/logo.gif'],
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
+  alternates: {
+    canonical: 'https://launchpixel.com',
+  },
 }
 
 export default function RootLayout({
@@ -28,7 +116,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
-        {/* You can use .png, .svg, etc. if you prefer */}
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <meta name="theme-color" content="#6366f1" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
