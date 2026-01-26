@@ -41,7 +41,7 @@ const testimonials: Testimonial[] = [
     name: "Dr. Rajesh Kumar",
     role: "Medical Director",
     company: "LiverCure.org",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
     rating: 5,
     text: "The healthcare platform made liver disease information accessible to thousands. Outstanding work."
   },
@@ -49,7 +49,7 @@ const testimonials: Testimonial[] = [
     name: "Priya Sharma",
     role: "Operations Manager",
     company: "Varanasi on Wheels",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
     rating: 5,
     text: "Our tour booking system has streamlined operations completely. Robust and reliable platform."
   },
@@ -57,7 +57,7 @@ const testimonials: Testimonial[] = [
     name: "Sunil Verma",
     role: "Owner",
     company: "Sunil Book Store",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/52.jpg",
     rating: 5,
     text: "LaunchPixel helped establish our digital presence and brought our bookstore to a wider audience."
   },
@@ -65,7 +65,7 @@ const testimonials: Testimonial[] = [
     name: "Coach Vikram Singh",
     role: "Head Coach",
     company: "PowerPlay Cricket Academy",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/67.jpg",
     rating: 5,
     text: "The academy management system revolutionized how we handle enrollments and track progress."
   },
@@ -81,7 +81,7 @@ const testimonials: Testimonial[] = [
     name: "Sharan Mehta",
     role: "Director",
     company: "Sharans Music Academy",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/71.jpg",
     rating: 5,
     text: "The music academy platform made managing classes incredibly easy. Intuitive and feature-rich."
   },
@@ -89,7 +89,7 @@ const testimonials: Testimonial[] = [
     name: "Amit Patel",
     role: "CTO",
     company: "EaseLearn.ai",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/85.jpg",
     rating: 5,
     text: "The AI integration was seamless. LaunchPixel's technical expertise is truly world-class."
   },
@@ -97,7 +97,7 @@ const testimonials: Testimonial[] = [
     name: "Neha Gupta",
     role: "Marketing Head",
     company: "VibeCast Innovations",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
     rating: 5,
     text: "Our digital signage platform has transformed how we engage with clients. Brilliant execution."
   },
@@ -105,7 +105,7 @@ const testimonials: Testimonial[] = [
     name: "Rahul Sharma",
     role: "Sales Manager",
     company: "Madhav Fabrication",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/43.jpg",
     rating: 5,
     text: "Online orders have tripled since launch. The platform is fast, secure, and user-friendly."
   },
@@ -113,7 +113,7 @@ const testimonials: Testimonial[] = [
     name: "Dr. Meera Singh",
     role: "Chief Physician",
     company: "LiverCure.org",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/women/28.jpg",
     rating: 5,
     text: "Patient engagement has increased dramatically. The platform is accessible and informative."
   },
@@ -121,7 +121,7 @@ const testimonials: Testimonial[] = [
     name: "Karan Verma",
     role: "Tour Manager",
     company: "Varanasi on Wheels",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/58.jpg",
     rating: 5,
     text: "Booking management is now effortless. LaunchPixel delivered exactly what we needed."
   },
@@ -129,7 +129,7 @@ const testimonials: Testimonial[] = [
     name: "Anjali Verma",
     role: "Store Manager",
     company: "Sunil Book Store",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/women/72.jpg",
     rating: 5,
     text: "Our online catalog has attracted customers from across the city. Great ROI on investment."
   },
@@ -137,7 +137,7 @@ const testimonials: Testimonial[] = [
     name: "Rohit Kumar",
     role: "Assistant Coach",
     company: "PowerPlay Cricket Academy",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/22.jpg",
     rating: 5,
     text: "Attendance tracking and parent communication features are game-changers for our academy."
   },
@@ -145,7 +145,7 @@ const testimonials: Testimonial[] = [
     name: "Nurse Priya Reddy",
     role: "Head Nurse",
     company: "Ayushmaan Hospital",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/women/36.jpg",
     rating: 5,
     text: "Patient record management is now paperless and efficient. Excellent system design."
   },
@@ -153,7 +153,7 @@ const testimonials: Testimonial[] = [
     name: "Ravi Mehta",
     role: "Music Instructor",
     company: "Sharans Music Academy",
-    image: "/placeholder-user.jpg",
+    image: "https://randomuser.me/api/portraits/men/79.jpg",
     rating: 5,
     text: "Practice logs and progress tracking help students improve faster. Very well thought out."
   }

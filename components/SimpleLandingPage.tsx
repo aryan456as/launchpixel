@@ -1,47 +1,68 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { ChevronRight, Sparkles, Zap, Target, Linkedin, Github } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import Navigation from "./Navigation"
 import TestimonialsCarousel from "./TestimonialsCarousel"
+import GlitchText from "./GlitchText"
 import dynamic from "next/dynamic"
 
 const Antigravity = dynamic(() => import('./Antigravity'), { ssr: false })
 
 export default function SimpleLandingPage() {
   const [isVisible, setIsVisible] = useState(false)
-  const [clientCount, setClientCount] = useState(1)
-  const [projectCount, setProjectCount] = useState(1)
+  const [clientCount, setClientCount] = useState(0)
+  const [projectCount, setProjectCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const statsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setIsVisible(true)
-    
-    // Animated counters
-    let clientTarget = 50
-    let projectTarget = 100
-    
-    let clientInterval = setInterval(() => {
-      setClientCount((prev) => {
-        if (prev < clientTarget) return prev + 1
-        clearInterval(clientInterval)
-        return clientTarget
-      })
-    }, 90)
-    
-    let projectInterval = setInterval(() => {
-      setProjectCount((prev) => {
-        if (prev < projectTarget) return prev + 1
-        clearInterval(projectInterval)
-        return projectTarget
-      })
-    }, 50)
-    
-    return () => {
-      clearInterval(clientInterval)
-      clearInterval(projectInterval)
-    }
   }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true)
+            
+            // Animated counters
+            let clientTarget = 50
+            let projectTarget = 100
+            
+            let clientInterval = setInterval(() => {
+              setClientCount((prev) => {
+                if (prev < clientTarget) return prev + 1
+                clearInterval(clientInterval)
+                return clientTarget
+              })
+            }, 90)
+            
+            let projectInterval = setInterval(() => {
+              setProjectCount((prev) => {
+                if (prev < projectTarget) return prev + 1
+                clearInterval(projectInterval)
+                return projectTarget
+              })
+            }, 50)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current)
+    }
+
+    return () => {
+      if (statsRef.current) {
+        observer.unobserve(statsRef.current)
+      }
+    }
+  }, [hasAnimated])
 
   return (
     <div className="min-h-screen bg-gray-950">
@@ -69,8 +90,8 @@ export default function SimpleLandingPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-32 sm:pt-28 md:pt-24">
-        <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 relative z-10">
+      <section className="relative min-h-screen flex items-center pt-20 sm:pt-24 md:pt-20 pb-12">
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <div
@@ -90,8 +111,15 @@ export default function SimpleLandingPage() {
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight">
                 Transform Your Business with{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                  AI Automation
+                <span className="inline-block whitespace-nowrap">
+                  <GlitchText 
+                    speed={1} 
+                    enableShadows={true} 
+                    enableOnHover={false}
+                    className="text-[clamp(1.7rem,7.3vw,4.1rem)] md:text-[clamp(2.73rem,9.07vw,6.34rem)] !inline-block"
+                  >
+                    AI Automation
+                  </GlitchText>
                 </span>
               </h1>
 
@@ -115,22 +143,6 @@ export default function SimpleLandingPage() {
                   View Our Work
                 </Link>
               </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6 sm:pt-8">
-                <div className="p-4 sm:p-6 rounded-xl bg-gray-900/50 backdrop-blur-lg border border-gray-800">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                    {clientCount}+
-                  </div>
-                  <div className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base">Happy Clients</div>
-                </div>
-                <div className="p-4 sm:p-6 rounded-xl bg-gray-900/50 backdrop-blur-lg border border-gray-800">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                    {projectCount}+
-                  </div>
-                  <div className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base">Projects Completed</div>
-                </div>
-              </div>
             </div>
 
             {/* Right Content - Video */}
@@ -139,16 +151,45 @@ export default function SimpleLandingPage() {
                 isVisible ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"
               }`}
             >
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-2xl blur-2xl"></div>
-                <video
-                  src="/launch_hero.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="rounded-2xl shadow-2xl relative z-10 border border-gray-800 w-full"
-                />
+              <div className="relative w-full h-full flex items-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-2xl"></div>
+                <div className="relative w-full">
+                  <video
+                    src="/launch_hero.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="rounded-2xl shadow-2xl border border-gray-800 w-full h-auto"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section ref={statsRef} className="relative py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+            <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+              <div className="relative z-10 text-center">
+                <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-3 sm:mb-4">
+                  {clientCount}+
+                </div>
+                <div className="text-gray-300 text-base sm:text-lg md:text-xl font-medium">Happy Clients</div>
+              </div>
+            </div>
+            
+            <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+              <div className="relative z-10 text-center">
+                <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-3 sm:mb-4">
+                  {projectCount}+
+                </div>
+                <div className="text-gray-300 text-base sm:text-lg md:text-xl font-medium">Projects Completed</div>
               </div>
             </div>
           </div>

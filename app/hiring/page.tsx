@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Sparkles, ArrowRight, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
 import dynamic from "next/dynamic"
 
@@ -102,18 +103,14 @@ export default function CampusAmbassadorForm() {
     }
 
     setIsLoading(true)
-    const formActionURL = 'https://formsubmit.co/viveksharma.network@gmail.com' // Replace with your actual email
-    const formDataToSend = new FormData()
-    
-    Object.entries(formData).forEach(([key, value]) => {
-      formDataToSend.append(key, value)
-    })
-    formDataToSend.append('_captcha', 'false')
 
     try {
-      const response = await fetch(formActionURL, {
+      const response = await fetch('/api/hiring', {
         method: 'POST',
-        body: formDataToSend,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
 
       if (response.ok) {
@@ -127,6 +124,7 @@ export default function CampusAmbassadorForm() {
           why: ''
         })
         setErrors({})
+        setTouched({})
       } else {
         alert('There was an error. Please try again.')
       }
@@ -141,6 +139,7 @@ export default function CampusAmbassadorForm() {
   if (isSuccess) {
     return (
         <div className="min-h-screen bg-gray-950">
+        <Navigation />
 
         {/* Antigravity Background */}
         <div className="fixed inset-0 z-0">
@@ -162,17 +161,6 @@ export default function CampusAmbassadorForm() {
             fieldStrength={10}
           />
         </div>
-      {/* Header Section */}
-      <div className="backdrop-blur-sm top-0 z-10 p-4 pb-2">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-2xl font-bold text-white mb-2 inline-flex items-center">
-            Welcome to&nbsp;
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
-              Launch Pixel
-            </span>
-          </h1>
-        </div>
-      </div>
         
         <div className="flex items-center justify-center px-4 py-40">
           <div className="max-w-md w-full text-center p-8 rounded-2xl bg-indigo-900/20 backdrop-blur-sm border border-indigo-700/30">
@@ -191,12 +179,15 @@ export default function CampusAmbassadorForm() {
             </button>
           </div> 
         </div>
+        
+        <Footer />
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-gray-950">
+      <Navigation />
 
         {/* Antigravity Background */}
         <div className="fixed inset-0 z-0">
@@ -218,19 +209,8 @@ export default function CampusAmbassadorForm() {
             fieldStrength={10}
           />
         </div>
-      {/* Header Section */}
-      <div className="backdrop-blur-sm top-0 z-10 p-4 pb-2">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-2xl font-bold text-white mb-2 inline-flex items-center">
-            Welcome to&nbsp;
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
-              Launch Pixel
-            </span>
-          </h1>
-        </div>
-      </div>
       
-      <div className="relative z-10 container mx-auto px-4 py-8 sm:py-12">
+      <div className="relative z-10 container mx-auto px-4 pt-32 sm:pt-36 md:pt-40 pb-8 sm:pb-12">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">

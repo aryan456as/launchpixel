@@ -1,24 +1,59 @@
-import type { Metadata } from "next"
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
-import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react"
+import { Mail, Phone, MapPin, Send, MessageSquare, Loader2 } from "lucide-react"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
 import dynamic from "next/dynamic"
 
 const Antigravity = dynamic(() => import('../../components/Antigravity'), { ssr: false })
 
-export const metadata: Metadata = {
-  title: "Contact Us | LaunchPixel - Get in Touch for AI Automation Solutions",
-  description: "Contact LaunchPixel for AI automation, web development, and digital transformation services. Get a free consultation and start your project today.",
-  keywords: "contact LaunchPixel, AI automation consultation, web development inquiry, get quote, business automation contact, digital solutions inquiry, free consultation",
-  openGraph: {
-    title: "Contact Us | LaunchPixel",
-    description: "Get in touch with LaunchPixel for AI automation and digital solutions",
-    type: "website",
-  },
-}
-
 export default function ContactPage() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  })
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setIsSuccess(true)
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        })
+        setTimeout(() => setIsSuccess(false), 5000)
+      } else {
+        alert('Failed to send message. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      alert('An error occurred. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-950">
       <Navigation />
@@ -60,10 +95,14 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 p-4 sm:p-6 md:p-8">
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Send us a Message</h2>
-              <form action="https://formsubmit.co/viveksharma.network@gmail.com" method="POST" className="space-y-4 sm:space-y-6">
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://launchpixel.com/contact?success=true" />
-                
+              
+              {isSuccess && (
+                <div className="mb-6 p-4 bg-green-900/50 border border-green-700 rounded-lg text-green-300">
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              )}
+              
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Full Name *
@@ -73,6 +112,8 @@ export default function ContactPage() {
                     id="name"
                     name="name"
                     required
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="John Doe"
                   />
@@ -87,6 +128,8 @@ export default function ContactPage() {
                     id="email"
                     name="email"
                     required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="john@example.com"
                   />
@@ -100,6 +143,8 @@ export default function ContactPage() {
                     type="tel"
                     id="phone"
                     name="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="+1 (555) 000-0000"
                   />
@@ -114,6 +159,8 @@ export default function ContactPage() {
                     id="subject"
                     name="subject"
                     required
+                    value={formData.subject}
+                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="Project Inquiry"
                   />
@@ -128,6 +175,8 @@ export default function ContactPage() {
                     name="message"
                     required
                     rows={5}
+                    value={formData.message}
+                    onChange={(e) => setFormData({...formData, message: e.target.value})}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
                     placeholder="Tell us about your project..."
                   />
@@ -135,10 +184,20 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center justify-center gap-2 font-medium text-sm sm:text-base"
+                  disabled={isLoading}
+                  className="w-full px-6 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center justify-center gap-2 font-medium text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send size={18} className="sm:w-5 sm:h-5" />
-                  Send Message
+                  {isLoading ? (
+                    <>
+                      <Loader2 size={18} className="sm:w-5 sm:h-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} className="sm:w-5 sm:h-5" />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </div>
