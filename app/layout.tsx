@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { Inter, Azeret_Mono as Geist_Mono } from "next/font/google"
 import "./globals.css"
-import FloatingButtons from "../components/FloatingButtons"
-import React from "react" // Import React
+import React from "react"
+import PersistentBackground from "../components/PersistentBackground"
 
 const geistSans = Inter({
   variable: "--font-geist-sans",
@@ -119,9 +119,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.png" />
         <meta name="theme-color" content="#6366f1" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        <FloatingButtons />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-950`}>
+        <PersistentBackground />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   )

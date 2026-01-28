@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Target, Lightbulb, Users, ChevronRight } from "lucide-react"
+import { Target, Lightbulb, Users, ChevronRight, Brain, Code2, BarChart2, Zap, Trophy, Layers, Headphones } from "lucide-react"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
 import dynamic from "next/dynamic"
+import SpotlightCard from "../../components/SpotlightCard"
 
 const Antigravity = dynamic(() => import('../../components/Antigravity'), { ssr: false })
 
@@ -23,7 +24,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-950">
       <Navigation />
-      
+
       {/* Antigravity Background */}
       <div className="fixed inset-0 z-0">
         <Antigravity
@@ -59,7 +60,7 @@ export default function AboutPage() {
 
           {/* Mission & Vision */}
           <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20">
-            <div className="p-6 sm:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
+            <SpotlightCard className="p-6 sm:p-8 flex flex-col items-start h-full">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
                 <Target className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
               </div>
@@ -67,9 +68,9 @@ export default function AboutPage() {
               <p className="text-sm sm:text-base text-gray-400">
                 To empower businesses worldwide with innovative AI automation solutions that drive growth, efficiency, and digital transformation. We believe in making advanced technology accessible and practical for businesses of all sizes.
               </p>
-            </div>
+            </SpotlightCard>
 
-            <div className="p-6 sm:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
+            <SpotlightCard className="p-6 sm:p-8 flex flex-col items-start h-full">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center mb-3 sm:mb-4">
                 <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
               </div>
@@ -77,31 +78,40 @@ export default function AboutPage() {
               <p className="text-sm sm:text-base text-gray-400">
                 To be the world's most trusted AI automation partner, recognized for delivering exceptional digital solutions that transform how businesses operate and grow in the digital age.
               </p>
-            </div>
+            </SpotlightCard>
           </div>
 
           {/* What We Do */}
           <div className="mb-12 sm:mb-16 md:mb-20">
             <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">What We Do</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-              <div className="p-4 sm:p-6 bg-gray-900/30 backdrop-blur-lg rounded-xl border border-gray-800">
+              <SpotlightCard className="p-4 sm:p-6 flex flex-col items-start h-full">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-950 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <Brain className="w-6 h-6 sm:w-7 sm:h-7 text-indigo-400" />
+                </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">AI Automation</h3>
                 <p className="text-gray-400 text-xs sm:text-sm">
                   We build intelligent automation solutions that streamline operations, reduce costs, and improve efficiency using cutting-edge AI and machine learning technologies.
                 </p>
-              </div>
-              <div className="p-4 sm:p-6 bg-gray-900/30 backdrop-blur-lg rounded-xl border border-gray-800">
+              </SpotlightCard>
+              <SpotlightCard className="p-4 sm:p-6 flex flex-col items-start h-full">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-950 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <Code2 className="w-6 h-6 sm:w-7 sm:h-7 text-indigo-400" />
+                </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Web Development</h3>
                 <p className="text-gray-400 text-xs sm:text-sm">
                   Custom web applications built with modern frameworks like React, Next.js, and Node.js. We create fast, scalable, and user-friendly digital experiences.
                 </p>
-              </div>
-              <div className="p-4 sm:p-6 bg-gray-900/30 backdrop-blur-lg rounded-xl border border-gray-800">
+              </SpotlightCard>
+              <SpotlightCard className="p-4 sm:p-6 flex flex-col items-start h-full">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-950 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <BarChart2 className="w-6 h-6 sm:w-7 sm:h-7 text-indigo-400" />
+                </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Digital Strategy</h3>
                 <p className="text-gray-400 text-xs sm:text-sm">
                   Comprehensive digital transformation strategies including SEO, brand development, and online presence optimization to help your business thrive online.
                 </p>
-              </div>
+              </SpotlightCard>
             </div>
           </div>
 
@@ -111,39 +121,45 @@ export default function AboutPage() {
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
               {[
                 {
+                  icon: Brain,
                   title: "Expertise in AI & Automation",
                   description: "Deep knowledge of AI technologies, machine learning, and automation frameworks to deliver cutting-edge solutions."
                 },
                 {
+                  icon: Users,
                   title: "Client-Centric Approach",
                   description: "We prioritize your business goals and work collaboratively to ensure every solution aligns with your vision."
                 },
                 {
+                  icon: Trophy,
                   title: "Proven Track Record",
                   description: "50+ satisfied clients and 100+ successful projects across various industries demonstrate our capability."
                 },
                 {
+                  icon: Layers,
                   title: "End-to-End Solutions",
                   description: "From strategy and design to development and deployment, we handle every aspect of your digital transformation."
                 },
                 {
+                  icon: Zap,
                   title: "Cutting-Edge Technology",
                   description: "We stay ahead of technology trends, using the latest tools and frameworks to build future-proof solutions."
                 },
                 {
+                  icon: Headphones,
                   title: "Ongoing Support",
                   description: "Our commitment doesn't end at launch. We provide continuous support and optimization for long-term success."
                 }
               ].map((item, index) => (
-                <div key={index} className="flex gap-3 sm:gap-4 p-4 sm:p-6 bg-gray-900/30 backdrop-blur-lg rounded-xl border border-gray-800">
-                  <div className="flex-shrink-0">
-                    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
+                <SpotlightCard key={index} className="flex flex-row gap-3 sm:gap-4 p-4 sm:p-6 items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 group-hover:scale-110 transition-transform" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-2">{item.title}</h3>
                     <p className="text-gray-400 text-xs sm:text-sm">{item.description}</p>
                   </div>
-                </div>
+                </SpotlightCard>
               ))}
             </div>
           </div>
@@ -156,12 +172,12 @@ export default function AboutPage() {
               { number: "5+", label: "Years Experience" },
               { number: "24/7", label: "Support Available" }
             ].map((stat, index) => (
-              <div key={index} className="text-center p-4 sm:p-6 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800">
+              <SpotlightCard key={index} className="text-center p-4 sm:p-6 flex flex-col items-center justify-center">
                 <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-1 sm:mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-400 text-xs sm:text-sm">{stat.label}</div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
 

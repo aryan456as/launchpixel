@@ -6,9 +6,7 @@ import Link from "next/link"
 import Navigation from "./Navigation"
 import TestimonialsCarousel from "./TestimonialsCarousel"
 import GlitchText from "./GlitchText"
-import dynamic from "next/dynamic"
-
-const Antigravity = dynamic(() => import('./Antigravity'), { ssr: false })
+import SpotlightCard from "./SpotlightCard"
 
 export default function SimpleLandingPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -27,11 +25,11 @@ export default function SimpleLandingPage() {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true)
-            
+
             // Animated counters
             let clientTarget = 50
             let projectTarget = 100
-            
+
             let clientInterval = setInterval(() => {
               setClientCount((prev) => {
                 if (prev < clientTarget) return prev + 1
@@ -39,7 +37,7 @@ export default function SimpleLandingPage() {
                 return clientTarget
               })
             }, 90)
-            
+
             let projectInterval = setInterval(() => {
               setProjectCount((prev) => {
                 if (prev < projectTarget) return prev + 1
@@ -65,58 +63,29 @@ export default function SimpleLandingPage() {
   }, [hasAnimated])
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen">
       <Navigation />
-      
-      {/* Antigravity Background */}
-      <div className="fixed inset-0 z-0">
-        <Antigravity
-          count={400}
-          magnetRadius={13}
-          ringRadius={10}
-          waveSpeed={0.6}
-          waveAmplitude={1}
-          particleSize={1.5}
-          lerpSpeed={0.05}
-          color="#5227FF"
-          autoAnimate
-          particleVariance={1}
-          rotationSpeed={0}
-          depthFactor={1}
-          pulseSpeed={3}
-          particleShape="sphere"
-          fieldStrength={10}
-        />
-      </div>
+
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 sm:pt-24 md:pt-20 pb-12">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div
-              className={`space-y-6 sm:space-y-8 transform transition-all duration-1000 ${
-                isVisible ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"
-              }`}
+              className={`space-y-6 sm:space-y-8 transform transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"
+                }`}
             >
-              <div className="inline-block">
-                <div className="flex items-center gap-2 text-indigo-400 bg-indigo-950/50 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 backdrop-blur-sm border border-indigo-800/50 text-xs sm:text-sm">
-                  <span className="relative flex h-2 w-2 sm:h-3 sm:w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 sm:h-3 sm:w-3 bg-indigo-500"></span>
-                  </span>
-                  Innovating the Future of Software
-                </div>
-              </div>
+
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight">
                 Transform Your Business with{" "}
                 <span className="inline-block whitespace-nowrap">
-                  <GlitchText 
-                    speed={1} 
-                    enableShadows={true} 
+                  <GlitchText
+                    speed={1}
+                    enableShadows={true}
                     enableOnHover={false}
-                    className="text-[clamp(1.7rem,7.3vw,4.1rem)] md:text-[clamp(2.73rem,9.07vw,6.34rem)] !inline-block"
+                    className="text-[clamp(2rem,7vw,4.2rem)] lg:text-[clamp(3rem,6vw,7.2rem)] !inline-block"
                   >
                     AI Automation
                   </GlitchText>
@@ -124,7 +93,7 @@ export default function SimpleLandingPage() {
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
-                LaunchPixel delivers cutting-edge AI automation, web development, and digital solutions 
+                LaunchPixel delivers cutting-edge AI automation, web development, and digital solutions
                 that drive growth and innovation for businesses worldwide.
               </p>
 
@@ -147,9 +116,8 @@ export default function SimpleLandingPage() {
 
             {/* Right Content - Video */}
             <div
-              className={`transform transition-all duration-1000 delay-300 ${
-                isVisible ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"
-              }`}
+              className={`transform transition-all duration-1000 delay-300 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"
+                }`}
             >
               <div className="relative w-full h-full flex items-center">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-2xl"></div>
@@ -173,25 +141,19 @@ export default function SimpleLandingPage() {
       <section ref={statsRef} className="relative py-12 sm:py-16 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-              <div className="relative z-10 text-center">
-                <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-3 sm:mb-4">
-                  {clientCount}+
-                </div>
-                <div className="text-gray-300 text-base sm:text-lg md:text-xl font-medium">Happy Clients</div>
+            <SpotlightCard className="p-6 sm:p-8 md:p-10 text-center flex flex-col items-center justify-center">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-3 sm:mb-4">
+                {clientCount}+
               </div>
-            </div>
-            
-            <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-800 relative group hover:border-indigo-500/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-              <div className="relative z-10 text-center">
-                <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-3 sm:mb-4">
-                  {projectCount}+
-                </div>
-                <div className="text-gray-300 text-base sm:text-lg md:text-xl font-medium">Projects Completed</div>
+              <div className="text-gray-300 text-base sm:text-lg md:text-xl font-medium">Happy Clients</div>
+            </SpotlightCard>
+
+            <SpotlightCard className="p-6 sm:p-8 md:p-10 text-center flex flex-col items-center justify-center">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-3 sm:mb-4">
+                {projectCount}+
               </div>
-            </div>
+              <div className="text-gray-300 text-base sm:text-lg md:text-xl font-medium">Projects Completed</div>
+            </SpotlightCard>
           </div>
         </div>
       </section>
@@ -209,7 +171,7 @@ export default function SimpleLandingPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="p-6 sm:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 group">
+            <SpotlightCard className="p-6 sm:p-8 flex flex-col items-start h-full">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-950 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                 <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-indigo-400" />
               </div>
@@ -217,9 +179,9 @@ export default function SimpleLandingPage() {
               <p className="text-sm sm:text-base text-gray-400">
                 Leverage cutting-edge AI and machine learning to automate processes and drive intelligent decision-making.
               </p>
-            </div>
+            </SpotlightCard>
 
-            <div className="p-6 sm:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 group">
+            <SpotlightCard className="p-6 sm:p-8 flex flex-col items-start h-full">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-950 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                 <Zap className="w-6 h-6 sm:w-7 sm:h-7 text-indigo-400" />
               </div>
@@ -227,9 +189,9 @@ export default function SimpleLandingPage() {
               <p className="text-sm sm:text-base text-gray-400">
                 Rapid development cycles with agile methodology ensure your project launches on time, every time.
               </p>
-            </div>
+            </SpotlightCard>
 
-            <div className="p-6 sm:p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 group">
+            <SpotlightCard className="p-6 sm:p-8 flex flex-col items-start h-full">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-950 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                 <Target className="w-6 h-6 sm:w-7 sm:h-7 text-indigo-400" />
               </div>
@@ -237,7 +199,7 @@ export default function SimpleLandingPage() {
               <p className="text-sm sm:text-base text-gray-400">
                 We focus on measurable outcomes that directly impact your business growth and success.
               </p>
-            </div>
+            </SpotlightCard>
           </div>
         </div>
       </section>
@@ -285,7 +247,7 @@ export default function SimpleLandingPage() {
                 Transforming ideas into powerful digital solutions through AI automation and innovation.
               </p>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Company</h4>
               <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-sm sm:text-base">
@@ -301,7 +263,7 @@ export default function SimpleLandingPage() {
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Services</h4>
               <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-sm sm:text-base">
@@ -322,7 +284,7 @@ export default function SimpleLandingPage() {
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Connect</h4>
               <div className="flex gap-3 sm:gap-4">
@@ -335,7 +297,7 @@ export default function SimpleLandingPage() {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-xs sm:text-sm">
             © 2025 LaunchPixel. All rights reserved.
           </div>

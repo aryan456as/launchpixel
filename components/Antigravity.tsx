@@ -19,6 +19,7 @@ interface AntigravityProps {
   pulseSpeed?: number;
   particleShape?: 'capsule' | 'sphere' | 'box' | 'tetrahedron';
   fieldStrength?: number;
+  paused?: boolean;
 }
 
 const AntigravityInner: React.FC<AntigravityProps> = ({
@@ -106,7 +107,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
 
     // Check if we should use auto-animation (after 6 seconds of inactivity)
     const isInactive = Date.now() - lastMouseMoveTime.current > 6000;
-    
+
     if (autoAnimate && isInactive) {
       const time = state.clock.getElapsedTime();
       destX = Math.sin(time * 0.5) * (v.width / 4);
@@ -185,13 +186,14 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
   );
 };
 
-const Antigravity: React.FC<AntigravityProps> = props => {
+const Antigravity: React.FC<AntigravityProps> = ({ paused, ...props }) => {
   return (
-    <Canvas 
+    <Canvas
       camera={{ position: [0, 0, 50], fov: 35 }}
       style={{ pointerEvents: 'none' }}
       eventSource={typeof window !== 'undefined' ? document.documentElement : undefined}
       eventPrefix="client"
+      frameloop={paused ? 'never' : 'always'}
     >
       <AntigravityInner {...props} />
     </Canvas>

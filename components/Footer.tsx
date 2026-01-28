@@ -15,25 +15,25 @@ export default function Footer() {
               Transforming ideas into powerful digital solutions through AI automation and innovation.
             </p>
             <div className="flex gap-2 sm:gap-3">
-              <a 
-                href="https://linkedin.com/company/launchpixel" 
-                target="_blank" 
+              <a
+                href="https://linkedin.com/company/launchpixel"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:bg-gray-700 transition-all"
               >
                 <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a 
-                href="https://github.com/launchpixel" 
-                target="_blank" 
+              <a
+                href="https://github.com/launchpixel"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:bg-gray-700 transition-all"
               >
                 <Github className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a 
-                href="https://twitter.com/launchpixel" 
-                target="_blank" 
+              <a
+                href="https://twitter.com/launchpixel"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:bg-gray-700 transition-all"
               >
@@ -41,7 +41,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          
+
           {/* Company Links */}
           <div>
             <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Company</h4>
@@ -68,7 +68,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           {/* Services Links */}
           <div>
             <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Services</h4>
@@ -100,7 +100,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           {/* Contact Info */}
           <div>
             <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Contact</h4>
@@ -113,14 +113,16 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                <span>Available on request</span>
+                <a href="tel:+918085149514" className="hover:text-indigo-400 transition-colors">
+                  +91 8085149514
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400 mt-0.5 flex-shrink-0" />
                 <span>India (Remote Worldwide)</span>
               </li>
             </ul>
-            <Link 
+            <Link
               href="/contact"
               className="inline-block mt-3 sm:mt-4 px-5 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 text-xs sm:text-sm font-medium"
             >
@@ -128,7 +130,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        
+
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-6 sm:pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">

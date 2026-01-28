@@ -28,6 +28,18 @@ const portfolioItems = [
     features: ["Adaptive Learning", "Progress Tracking", "AI Recommendations", "Interactive Lessons", "Gamification"]
   },
   {
+    title: "Akonomics.in",
+    displayName: "Akonomics",
+    type: "EdTech Platform",
+    description: "Expert-led economics coaching platform with mobile app integration, empowering students with concept-driven learning and exam preparation.",
+    fullDescription: "Akonomics is a premier economics education platform offering both physical classes in Delhi and a comprehensive mobile learning app. Designed for students preparing for competitive exams like CUET PG, IES, and RBI, it features expert-led video lessons, mock tests, and personalized mentorship. The platform bridges the gap between complex economic theories and practical understanding.",
+    image: "/akonomics.png",
+    link: "https://akonomics.in",
+    tags: ["EdTech", "Mobile App", "Education"],
+    technologies: ["React", "Node.js", "Mobile App", "LMS", "Video Streaming"],
+    features: ["Interactive Lessons", "Exam Prep", "Mentorship", "Mock Tests", "Offline Access"]
+  },
+  {
     title: "LiverCure.org",
     displayName: "LiverCure",
     type: "Healthcare Platform",
@@ -78,6 +90,31 @@ const portfolioItems = [
     tags: ["Travel", "Booking System", "Tourism"],
     technologies: ["Next.js", "Stripe", "Google Maps API", "MongoDB", "Twilio"],
     features: ["Tour Packages", "Online Booking", "Payment Gateway", "Itinerary Builder", "Customer Reviews"]
+  },
+  {
+    title: "Prajapatiagroexim.com",
+    displayName: "Prajapati Agro Exim",
+    type: "Agriculture Export",
+    description: "Trusted agriculture manufacturing and trading export company specializing in the bulk supply of high-quality agricultural products.",
+    fullDescription: "Prajapati Agro Exim is a leading agriculture export company trusted for delivering high-quality commodities worldwide. Specializing in bulk supply of corn, rice, onions, and chickpeas, they ensure direct sourcing from reliable farms. The platform facilitates international trade with a focus on trust and excellence.",
+    image: "/prajapatiagro.png",
+    link: "https://prajapatiagroexim.com",
+    tags: ["Agriculture", "Export", "B2B"],
+    technologies: ["Next.js", "React", "TailwindCSS", "Multi-language", "SEO"],
+    features: ["Product Catalog", "Bulk Ordering", "Export Compliance", "Farm-to-Table", "Inquiry System"]
+  },
+  {
+    title: "Mornova.in",
+    displayName: "Mornova",
+    type: "Health & Wellness",
+    description: "Premium Moringa-based superfood products store promoting holistic health and wellness through nature's most potent ingredients.",
+    fullDescription: "Mornova is a dedicated health and wellness brand bringing the benefits of Moringa to daily life. The platform offers a curated selection of premium Moringa products, including herbal sips and pure powders. With a focus on purity and sustainability, Mornova provides scientifically proven health solutions driven by nature.",
+    image: "/mornova.png",
+    link: "https://mornova.in",
+    tags: ["Health", "E-commerce", "Wellness"],
+    technologies: ["Next.js", "React", "TailwindCSS", "Payment Gateway", "SEO"],
+    features: ["Product Catalog", "Health Education", "Secure Checkout", "Mobile Responsive", "Wellness Blog"],
+    imageStyle: { objectPosition: 'left center' }
   },
   {
     title: "SunilBookStore.store",
@@ -135,7 +172,7 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-gray-950">
       <Navigation />
-      
+
       {/* Antigravity Background */}
       <div className="fixed inset-0 z-0">
         <Antigravity
@@ -188,121 +225,15 @@ export default function PortfolioPage() {
                   rotateAmplitude={12}
                   showMobileWarning={false}
                   showTooltip={true}
+                  // @ts-ignore
+                  imageStyle={item.imageStyle}
                   onClick={() => setSelectedProject(item)}
                 />
               </div>
             ))}
           </div>
 
-          {/* Modal Popup */}
-          {selectedProject && (
-            <div 
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-4 pt-16 sm:pt-20"
-              onClick={() => setSelectedProject(null)}
-            >
-              <div 
-                className="bg-gray-900 rounded-2xl border border-gray-800 max-w-3xl w-full max-h-[90vh] sm:max-h-[85vh] overflow-y-auto relative"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-all"
-                >
-                  <X size={18} className="sm:w-5 sm:h-5" />
-                </button>
 
-                {/* Project Image/Video */}
-                <div className="relative h-40 sm:h-48 md:h-64 overflow-hidden rounded-t-2xl">
-                  {selectedProject.video ? (
-                    <video
-                      src={selectedProject.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <Image
-                      src={selectedProject.image}
-                      alt={selectedProject.displayName}
-                      width={1200}
-                      height={600}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
-                </div>
-
-                {/* Project Details */}
-                <div className="p-4 sm:p-6">
-                  <div className="flex items-start justify-between mb-3 sm:mb-4 gap-3">
-                    <div>
-                      <h2 className="text-xl sm:text-2xl font-bold text-white mb-1">{selectedProject.displayName}</h2>
-                      <p className="text-sm sm:text-base text-indigo-400">{selectedProject.type}</p>
-                    </div>
-                    {selectedProject.link && (
-                      <a
-                        href={selectedProject.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm flex-shrink-0"
-                      >
-                        Visit Site
-                        <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5" />
-                      </a>
-                    )}
-                  </div>
-
-                  <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm">{selectedProject.fullDescription}</p>
-
-                  {/* Technologies */}
-                  <div className="mb-3 sm:mb-4">
-                    <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Technologies Used</h3>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {selectedProject.technologies.map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 sm:py-1 text-xs bg-gray-800 text-gray-300 rounded-full border border-gray-700"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Features */}
-                  <div className="mb-3 sm:mb-4">
-                    <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Key Features</h3>
-                    <ul className="grid sm:grid-cols-2 gap-1 sm:gap-1.5">
-                      {selectedProject.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-                          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Tags */}
-                  <div>
-                    <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Categories</h3>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {selectedProject.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 sm:py-1 text-xs bg-indigo-950/50 text-indigo-300 rounded-full border border-indigo-800/50"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* CTA Section */}
           <div className="text-center mt-12 sm:mt-16">
@@ -333,6 +264,118 @@ export default function PortfolioPage() {
           })
         }}
       />
+
+      {/* Modal Popup */}
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-4 pt-16 sm:pt-20"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="bg-gray-900 rounded-2xl border border-gray-800 max-w-3xl w-full max-h-[90vh] sm:max-h-[85vh] overflow-y-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-all"
+            >
+              <X size={18} className="sm:w-5 sm:h-5" />
+            </button>
+
+            {/* Project Image/Video */}
+            <div className="relative h-40 sm:h-48 md:h-64 overflow-hidden rounded-t-2xl">
+              {selectedProject.video ? (
+                <video
+                  src={selectedProject.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={selectedProject.image}
+                  alt={selectedProject.displayName}
+                  width={1200}
+                  height={600}
+                  className="w-full h-full object-cover"
+                  // @ts-ignore
+                  style={(selectedProject as any).imageStyle}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+            </div>
+
+            {/* Project Details */}
+            <div className="p-4 sm:p-6">
+              <div className="flex items-start justify-between mb-3 sm:mb-4 gap-3">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-1">{selectedProject.displayName}</h2>
+                  <p className="text-sm sm:text-base text-indigo-400">{selectedProject.type}</p>
+                </div>
+                {selectedProject.link && (
+                  <a
+                    href={selectedProject.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm flex-shrink-0"
+                  >
+                    Visit Site
+                    <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5" />
+                  </a>
+                )}
+              </div>
+
+              <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm">{selectedProject.fullDescription}</p>
+
+              {/* Technologies */}
+              <div className="mb-3 sm:mb-4">
+                <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Technologies Used</h3>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {selectedProject.technologies.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2 py-0.5 sm:py-1 text-xs bg-gray-800 text-gray-300 rounded-full border border-gray-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Features */}
+              <div className="mb-3 sm:mb-4">
+                <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Key Features</h3>
+                <ul className="grid sm:grid-cols-2 gap-1 sm:gap-1.5">
+                  {selectedProject.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
+                      <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Tags */}
+              <div>
+                <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Categories</h3>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {selectedProject.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2 py-0.5 sm:py-1 text-xs bg-indigo-950/50 text-indigo-300 rounded-full border border-indigo-800/50"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

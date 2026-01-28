@@ -18,6 +18,7 @@ interface TiltedCardProps {
   overlayContent?: React.ReactNode;
   displayOverlayContent?: boolean;
   onClick?: () => void;
+  imageStyle?: React.CSSProperties;
 }
 
 const springValues: SpringOptions = {
@@ -40,7 +41,8 @@ export default function TiltedCard({
   showTooltip = true,
   overlayContent = null,
   displayOverlayContent = false,
-  onClick
+  onClick,
+  imageStyle = {}
 }: TiltedCardProps) {
   const ref = useRef<HTMLElement>(null);
   const x = useMotionValue(0);
@@ -121,7 +123,8 @@ export default function TiltedCard({
           className="absolute top-0 left-0 object-cover rounded-[15px] will-change-transform [transform:translateZ(0)]"
           style={{
             width: imageWidth,
-            height: imageHeight
+            height: imageHeight,
+            ...imageStyle
           }}
         />
         {displayOverlayContent && overlayContent && (

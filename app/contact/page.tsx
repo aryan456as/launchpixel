@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Mail, Phone, MapPin, Send, MessageSquare, Loader2 } from "lucide-react"
+import { Mail, Phone, MapPin, Send, MessageSquare, Loader2, MessageCircle } from "lucide-react"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
 import dynamic from "next/dynamic"
@@ -57,7 +57,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-950">
       <Navigation />
-      
+
       {/* Antigravity Background */}
       <div className="fixed inset-0 z-0">
         <Antigravity
@@ -95,13 +95,13 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 p-4 sm:p-6 md:p-8">
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Send us a Message</h2>
-              
+
               {isSuccess && (
                 <div className="mb-6 p-4 bg-green-900/50 border border-green-700 rounded-lg text-green-300">
                   Message sent successfully! We'll get back to you soon.
                 </div>
               )}
-              
+
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -113,7 +113,7 @@ export default function ContactPage() {
                     name="name"
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="John Doe"
                   />
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     name="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="john@example.com"
                   />
@@ -144,7 +144,7 @@ export default function ContactPage() {
                     id="phone"
                     name="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="+1 (555) 000-0000"
                   />
@@ -160,7 +160,7 @@ export default function ContactPage() {
                     name="subject"
                     required
                     value={formData.subject}
-                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm sm:text-base"
                     placeholder="Project Inquiry"
                   />
@@ -176,7 +176,7 @@ export default function ContactPage() {
                     required
                     rows={5}
                     value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-2.5 sm:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
                     placeholder="Tell us about your project..."
                   />
@@ -206,7 +206,7 @@ export default function ContactPage() {
             <div className="space-y-6 sm:space-y-8">
               <div className="bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 p-6 sm:p-8">
                 <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Contact Information</h2>
-                
+
                 <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-start gap-3 sm:gap-4">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center flex-shrink-0">
@@ -226,7 +226,24 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-base sm:text-lg font-semibold text-white mb-1">Phone</h3>
-                      <p className="text-sm sm:text-base text-gray-400">Available on request</p>
+                      <p className="text-sm sm:text-base text-gray-400">+91 80851 49514</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-950 flex items-center justify-center flex-shrink-0">
+                      <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#25D366]" />
+                    </div>
+                    <div>
+                      <h3 className="text-base sm:text-lg font-semibold text-white mb-1">WhatsApp</h3>
+                      <a
+                        href="https://wa.me/918085149514"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#25D366]/10 border border-[#25D366]/20 rounded-full text-[#25D366] hover:bg-[#25D366]/20 transition-all text-sm font-medium"
+                      >
+                        Chat on WhatsApp
+                      </a>
                     </div>
                   </div>
 
