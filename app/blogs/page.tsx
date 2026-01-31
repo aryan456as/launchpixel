@@ -32,10 +32,10 @@ export default function BlogsPage() {
           rotationSpeed={0}
           depthFactor={1}
           pulseSpeed={3}
-          particleShape="sphere"
+          particleShape="box"
           fieldStrength={10}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 via-gray-950/90 to-gray-950 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/50 via-gray-950/80 to-gray-950 pointer-events-none" />
       </div>
 
       <main className="relative z-10 pt-32 pb-20 sm:pt-40 sm:pb-24">

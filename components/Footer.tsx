@@ -47,18 +47,8 @@ export default function Footer() {
             <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Company</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-sm sm:text-base">
               <li>
-                <Link href="/about" className="hover:text-indigo-400 transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
                 <Link href="/portfolio" className="hover:text-indigo-400 transition-colors">
                   Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="/testimonials" className="hover:text-indigo-400 transition-colors">
-                  Testimonials
                 </Link>
               </li>
               <li>
@@ -66,37 +56,34 @@ export default function Footer() {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link href="/hiring" className="hover:text-indigo-400 transition-colors">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-indigo-400 transition-colors">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Services Links */}
           <div>
-            <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">Services</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4 text-white text-sm sm:text-base">What We Do</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-sm sm:text-base">
               <li>
-                <Link href="/services" className="hover:text-indigo-400 transition-colors">
-                  All Services
-                </Link>
+                <span className="text-gray-400">Web Development</span>
               </li>
               <li>
-                <Link href="/services#web-development" className="hover:text-indigo-400 transition-colors">
-                  Web Development
-                </Link>
+                <span className="text-gray-400">AI Applications</span>
               </li>
               <li>
-                <Link href="/services#ai-applications" className="hover:text-indigo-400 transition-colors">
-                  AI Applications
-                </Link>
+                <span className="text-gray-400">Brand Strategy</span>
               </li>
               <li>
-                <Link href="/services#brand-strategy" className="hover:text-indigo-400 transition-colors">
-                  Brand Strategy
-                </Link>
-              </li>
-              <li>
-                <Link href="/hiring" className="hover:text-indigo-400 transition-colors">
-                  Careers
-                </Link>
+                <span className="text-gray-400">UI/UX Design</span>
               </li>
             </ul>
           </div>

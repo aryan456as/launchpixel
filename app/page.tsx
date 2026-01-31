@@ -1,6 +1,5 @@
-import SimpleLandingPage from "../components/SimpleLandingPage"
+import UnifiedLandingPage from "../components/UnifiedLandingPage"
 
 export default function Home() {
-  return <SimpleLandingPage />
+  return <UnifiedLandingPage />
 }
-

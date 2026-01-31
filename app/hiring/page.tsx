@@ -53,32 +53,32 @@ export default function CampusAmbassadorForm() {
         if (value.trim().length < 3) return 'Name must be at least 3 characters'
         if (!/^[a-zA-Z\s]*$/.test(value)) return 'Name should only contain letters'
         return ''
-      
+
       case 'phone':
         if (!value.trim()) return 'Phone number is required'
-        if (!/^[0-9]{10}$/.test(value.replace(/\D/g, ''))) 
+        if (!/^[0-9]{10}$/.test(value.replace(/\D/g, '')))
           return 'Please enter a valid 10-digit phone number'
         return ''
-      
+
       case 'college':
         if (!value.trim()) return 'College/University is required'
         if (value.trim().length < 3) return 'Please enter full college name'
         return ''
-      
+
       case 'department':
         if (!value.trim()) return 'Department is required'
         if (value.trim().length < 2) return 'Please enter valid department'
         return ''
-      
+
       case 'year':
         if (!value) return 'Year of study is required'
         return ''
-      
+
       case 'why':
         if (!value.trim()) return 'Please tell us why you want to join'
         if (value.trim().length < 50) return 'Please provide at least 50 characters'
         return ''
-      
+
       default:
         return ''
     }
@@ -90,14 +90,14 @@ export default function CampusAmbassadorForm() {
       const error = validateField(key, formData[key])
       if (error) newErrors[key] = error
     })
-    
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     if (!validateForm()) {
       return
     }
@@ -138,18 +138,18 @@ export default function CampusAmbassadorForm() {
 
   if (isSuccess) {
     return (
-        <div className="min-h-screen bg-gray-950">
+      <div className="min-h-screen bg-gray-950">
         <Navigation />
 
         {/* Antigravity Background */}
         <div className="fixed inset-0 z-0">
           <Antigravity
-            count={400}
-            magnetRadius={13}
-            ringRadius={10}
-            waveSpeed={0.6}
-            waveAmplitude={1}
-            particleSize={1.5}
+            count={300}
+            magnetRadius={15}
+            ringRadius={12}
+            waveSpeed={0.5}
+            waveAmplitude={1.2}
+            particleSize={1.2}
             lerpSpeed={0.05}
             color="#5227FF"
             autoAnimate
@@ -157,11 +157,12 @@ export default function CampusAmbassadorForm() {
             rotationSpeed={0}
             depthFactor={1}
             pulseSpeed={3}
-            particleShape="sphere"
+            particleShape="box"
             fieldStrength={10}
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-950/50 via-gray-950/80 to-gray-950 pointer-events-none" />
         </div>
-        
+
         <div className="flex items-center justify-center px-4 py-40">
           <div className="max-w-md w-full text-center p-8 rounded-2xl bg-indigo-900/20 backdrop-blur-sm border border-indigo-700/30">
             <h2 className="text-2xl font-bold text-white mb-4">Thank You for Your Application!</h2>
@@ -177,9 +178,9 @@ export default function CampusAmbassadorForm() {
               Back to Homepage
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-          </div> 
+          </div>
         </div>
-        
+
         <Footer />
       </div>
     )
@@ -189,27 +190,28 @@ export default function CampusAmbassadorForm() {
     <div className="min-h-screen bg-gray-950">
       <Navigation />
 
-        {/* Antigravity Background */}
-        <div className="fixed inset-0 z-0">
-          <Antigravity
-            count={400}
-            magnetRadius={13}
-            ringRadius={10}
-            waveSpeed={0.6}
-            waveAmplitude={1}
-            particleSize={1.5}
-            lerpSpeed={0.05}
-            color="#5227FF"
-            autoAnimate
-            particleVariance={1}
-            rotationSpeed={0}
-            depthFactor={1}
-            pulseSpeed={3}
-            particleShape="sphere"
-            fieldStrength={10}
-          />
-        </div>
-      
+      {/* Antigravity Background */}
+      <div className="fixed inset-0 z-0">
+        <Antigravity
+          count={300}
+          magnetRadius={15}
+          ringRadius={12}
+          waveSpeed={0.5}
+          waveAmplitude={1.2}
+          particleSize={1.2}
+          lerpSpeed={0.05}
+          color="#5227FF"
+          autoAnimate
+          particleVariance={1}
+          rotationSpeed={0}
+          depthFactor={1}
+          pulseSpeed={3}
+          particleShape="box"
+          fieldStrength={10}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/50 via-gray-950/80 to-gray-950 pointer-events-none" />
+      </div>
+
       <div className="relative z-10 container mx-auto px-4 pt-32 sm:pt-36 md:pt-40 pb-8 sm:pb-12">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
@@ -222,7 +224,7 @@ export default function CampusAmbassadorForm() {
             <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 px-4">
               Gain valuable experience, expand your professional network, and earn commissions while representing Launch Pixel!
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
               <div className="p-4 sm:p-6 rounded-xl bg-indigo-800/20 backdrop-blur-sm border border-indigo-700/30">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">Your Responsibilities</h3>
@@ -253,7 +255,7 @@ export default function CampusAmbassadorForm() {
                   </li>
                 </ul>
               </div>
-              
+
               <div className="p-4 sm:p-6 rounded-xl bg-indigo-800/20 backdrop-blur-sm border border-indigo-700/30">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">What You Get</h3>
                 <ul className="text-gray-300 space-y-2 sm:space-y-3 text-left text-sm sm:text-base">
@@ -281,14 +283,14 @@ export default function CampusAmbassadorForm() {
               </div>
             </div>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 max-w-xl mx-auto">
             <div>
               <input
                 type="text"
                 placeholder="Full Name"
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 onBlur={() => handleBlur('name')}
                 className="w-full px-6 py-4 rounded-xl bg-indigo-800/50 text-gray-100 placeholder-gray-500 
                   border border-indigo-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 
@@ -302,7 +304,7 @@ export default function CampusAmbassadorForm() {
                 type="tel"
                 placeholder="Phone Number"
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 onBlur={() => handleBlur('phone')}
                 className="w-full px-6 py-4 rounded-xl bg-indigo-800/50 text-gray-100 placeholder-gray-500 
                   border border-indigo-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 
@@ -316,7 +318,7 @@ export default function CampusAmbassadorForm() {
                 type="text"
                 placeholder="College / University"
                 value={formData.college}
-                onChange={(e) => setFormData({...formData, college: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, college: e.target.value })}
                 onBlur={() => handleBlur('college')}
                 className="w-full px-6 py-4 rounded-xl bg-indigo-800/50 text-gray-100 placeholder-gray-500 
                   border border-indigo-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 
@@ -330,7 +332,7 @@ export default function CampusAmbassadorForm() {
                 type="text"
                 placeholder="Department"
                 value={formData.department}
-                onChange={(e) => setFormData({...formData, department: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                 onBlur={() => handleBlur('department')}
                 className="w-full px-6 py-4 rounded-xl bg-indigo-800/50 text-gray-100 placeholder-gray-500 
                   border border-indigo-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 
@@ -342,7 +344,7 @@ export default function CampusAmbassadorForm() {
             <div>
               <select
                 value={formData.year}
-                onChange={(e) => setFormData({...formData, year: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, year: e.target.value })}
                 onBlur={() => handleBlur('year')}
                 className="w-full px-6 py-4 rounded-xl bg-indigo-800/50 text-gray-100 
                   border border-indigo-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 
@@ -362,7 +364,7 @@ export default function CampusAmbassadorForm() {
               <textarea
                 placeholder="Why do you want to be a Campus Ambassador for Launch Pixel?"
                 value={formData.why}
-                onChange={(e) => setFormData({...formData, why: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, why: e.target.value })}
                 onBlur={() => handleBlur('why')}
                 rows={4}
                 className="w-full px-6 py-4 rounded-xl bg-indigo-800/50 text-gray-100 placeholder-gray-500 
@@ -392,7 +394,7 @@ export default function CampusAmbassadorForm() {
               )}
             </button>
           </form>
-          
+
           <div className="mt-8 sm:mt-12 text-center">
             <p className="text-sm sm:text-base text-gray-400 px-4">
               Questions about the program? Email us at <span className="text-indigo-400">team@launchpixel.in</span>

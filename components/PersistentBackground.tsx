@@ -19,16 +19,15 @@ export default function PersistentBackground() {
 
     return (
         <div
-            className={`fixed inset-0 z-0 transition-opacity duration-1000 ${isHome ? "opacity-100 pointer-events-none" : "opacity-0 pointer-events-none"
-                }`}
+            className="fixed inset-0 z-0 opacity-100 pointer-events-none transition-opacity duration-1000"
         >
             <Antigravity
-                count={400}
-                magnetRadius={13}
-                ringRadius={10}
-                waveSpeed={0.6}
-                waveAmplitude={1}
-                particleSize={1.5}
+                count={300}
+                magnetRadius={15}
+                ringRadius={12}
+                waveSpeed={0.5}
+                waveAmplitude={1.2}
+                particleSize={1.2}
                 lerpSpeed={0.05}
                 color="#5227FF"
                 autoAnimate
@@ -36,10 +35,10 @@ export default function PersistentBackground() {
                 rotationSpeed={0}
                 depthFactor={1}
                 pulseSpeed={3}
-                particleShape="sphere"
+                particleShape="box"
                 fieldStrength={10}
-                paused={!isHome}
             />
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-950/30 via-gray-950/50 to-gray-950 pointer-events-none" />
         </div>
     )
 }

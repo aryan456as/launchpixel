@@ -174,14 +174,15 @@ export default function PortfolioPage() {
       <Navigation />
 
       {/* Antigravity Background */}
+      {/* Antigravity Background */}
       <div className="fixed inset-0 z-0">
         <Antigravity
-          count={400}
-          magnetRadius={13}
-          ringRadius={10}
-          waveSpeed={0.6}
-          waveAmplitude={1}
-          particleSize={1.5}
+          count={300}
+          magnetRadius={15}
+          ringRadius={12}
+          waveSpeed={0.5}
+          waveAmplitude={1.2}
+          particleSize={1.2}
           lerpSpeed={0.05}
           color="#5227FF"
           autoAnimate
@@ -189,9 +190,10 @@ export default function PortfolioPage() {
           rotationSpeed={0}
           depthFactor={1}
           pulseSpeed={3}
-          particleShape="sphere"
+          particleShape="box"
           fieldStrength={10}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/50 via-gray-950/80 to-gray-950 pointer-events-none" />
       </div>
 
       {/* Hero Section */}

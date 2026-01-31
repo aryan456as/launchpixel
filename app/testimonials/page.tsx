@@ -47,16 +47,16 @@ export default function TestimonialsPage() {
   return (
     <div className="min-h-screen bg-gray-950">
       <Navigation />
-      
+
       {/* Antigravity Background */}
       <div className="fixed inset-0 z-0">
         <Antigravity
-          count={400}
-          magnetRadius={13}
-          ringRadius={10}
-          waveSpeed={0.6}
-          waveAmplitude={1}
-          particleSize={1.5}
+          count={300}
+          magnetRadius={15}
+          ringRadius={12}
+          waveSpeed={0.5}
+          waveAmplitude={1.2}
+          particleSize={1.2}
           lerpSpeed={0.05}
           color="#5227FF"
           autoAnimate
@@ -64,9 +64,10 @@ export default function TestimonialsPage() {
           rotationSpeed={0}
           depthFactor={1}
           pulseSpeed={3}
-          particleShape="sphere"
+          particleShape="box"
           fieldStrength={10}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/50 via-gray-950/80 to-gray-950 pointer-events-none" />
       </div>
 
       {/* Hero Section */}
@@ -89,7 +90,7 @@ export default function TestimonialsPage() {
                 className="p-8 bg-gray-900/50 backdrop-blur-lg rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 relative"
               >
                 <Quote className="absolute top-6 right-6 w-8 h-8 text-indigo-400/20" />
-                
+
                 <div className="flex items-center gap-4 mb-4">
                   <Image
                     src={testimonial.image}
