@@ -2,12 +2,117 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Mail, Phone, MapPin, Send, MessageSquare, Loader2, MessageCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Send, MessageSquare, Loader2, MessageCircle, Plus, Minus } from "lucide-react"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
 import dynamic from "next/dynamic"
+import { motion, AnimatePresence } from "framer-motion"
 
 const Antigravity = dynamic(() => import('../../components/Antigravity'), { ssr: false })
+
+// FAQ Data
+const faqData = [
+  {
+    question: "What services do you offer?",
+    answer: "We specialize in AI automation, web development, mobile apps, brand strategy, UI/UX design, and SEO optimization. Our team delivers end-to-end solutions tailored to your business needs."
+  },
+  {
+    question: "How long does a typical project take?",
+    answer: "Project timelines vary based on complexity. Simple websites take 2-4 weeks, while complex AI applications may take 2-3 months. We'll provide a detailed timeline during our initial consultation."
+  },
+  {
+    question: "Do you work with international clients?",
+    answer: "Yes! We work with clients worldwide and offer remote services with flexible communication schedules. We use tools like Slack, Zoom, and project management platforms to ensure smooth collaboration across time zones."
+  },
+  {
+    question: "What is your pricing structure?",
+    answer: "We offer custom quotes based on project requirements. Contact us for a free consultation and detailed proposal. We're transparent about costs and provide milestone-based billing for larger projects."
+  },
+  {
+    question: "Do you offer ongoing support after project completion?",
+    answer: "Absolutely! We offer maintenance packages, technical support, and continuous improvement services. Your success is our priority, and we're here to help you grow long after launch."
+  },
+  {
+    question: "What technologies do you use?",
+    answer: "We use cutting-edge technologies including React, Next.js, Node.js, Python, TensorFlow, and various AI/ML frameworks. Our tech stack is always evolving to deliver the best solutions."
+  }
+]
+
+// FAQ Item Component
+function FAQItem({ question, answer, isOpen, onClick }: {
+  question: string
+  answer: string
+  isOpen: boolean
+  onClick: () => void
+}) {
+  return (
+    <div className="border border-gray-800 rounded-xl overflow-hidden bg-gray-900/30 backdrop-blur-lg hover:border-indigo-500/30 transition-colors">
+      <button
+        onClick={onClick}
+        className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 text-left group"
+      >
+        <span className="text-base sm:text-lg font-semibold text-white group-hover:text-indigo-300 transition-colors">
+          {question}
+        </span>
+        <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-indigo-500 rotate-0' : 'bg-gray-800 rotate-0'}`}>
+          {isOpen ? (
+            <Minus size={18} className="text-white" />
+          ) : (
+            <Plus size={18} className="text-gray-400" />
+          )}
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="px-5 sm:px-6 pb-5 sm:pb-6">
+              <div className="pt-0 border-t border-gray-800">
+                <p className="pt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+                  {answer}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+// FAQ Section Component
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
+  return (
+    <div className="mt-12 sm:mt-16 md:mt-20">
+      <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">
+        Frequently Asked Questions
+      </h2>
+      <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
+        {faqData.map((faq, index) => (
+          <FAQItem
+            key={index}
+            question={faq.question}
+            answer={faq.answer}
+            isOpen={openIndex === index}
+            onClick={() => toggleFAQ(index)}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 
 export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -85,7 +190,7 @@ export default function ContactPage() {
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center mb-12 sm:mb-16">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
-              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Touch</span>
+              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-[length:200%_auto] animate-gradient-flow">Touch</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
               Ready to transform your business with AI automation? Let's discuss your project and create something amazing together.
@@ -295,34 +400,7 @@ export default function ContactPage() {
           </div>
 
           {/* FAQ Section */}
-          <div className="mt-12 sm:mt-16 md:mt-20">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">Frequently Asked Questions</h2>
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-              {[
-                {
-                  question: "What services do you offer?",
-                  answer: "We specialize in AI automation, web development, mobile apps, brand strategy, UI/UX design, and SEO optimization."
-                },
-                {
-                  question: "How long does a typical project take?",
-                  answer: "Project timelines vary based on complexity. Simple websites take 2-4 weeks, while complex AI applications may take 2-3 months."
-                },
-                {
-                  question: "Do you work with international clients?",
-                  answer: "Yes! We work with clients worldwide and offer remote services with flexible communication schedules."
-                },
-                {
-                  question: "What is your pricing structure?",
-                  answer: "We offer custom quotes based on project requirements. Contact us for a free consultation and detailed proposal."
-                }
-              ].map((faq, index) => (
-                <div key={index} className="p-4 sm:p-6 bg-gray-900/30 backdrop-blur-lg rounded-xl border border-gray-800">
-                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2">{faq.question}</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <FAQSection />
 
           {/* CTA Section */}
           <div className="mt-12 sm:mt-16 md:mt-20 text-center">

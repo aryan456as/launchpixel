@@ -215,11 +215,9 @@ export default function CampusAmbassadorForm() {
       <div className="relative z-10 container mx-auto px-4 pt-32 sm:pt-36 md:pt-40 pb-8 sm:pb-12">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
-              Join Launch Pixel as a
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 ml-2">
-                Campus Ambassador
-              </span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-6">
+              <span className="block text-white">Join LaunchPixel as a</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-[length:200%_auto] animate-gradient-flow">Campus Ambassador</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 px-4">
               Gain valuable experience, expand your professional network, and earn commissions while representing Launch Pixel!

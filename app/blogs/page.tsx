@@ -48,8 +48,9 @@ export default function BlogsPage() {
               <span>LaunchPixel Insights</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
-              Navigating the <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Digital Frontier</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+              <span className="block text-white">Navigating the</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-[length:200%_auto] animate-gradient-flow">Digital Frontier</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-400 leading-relaxed">
