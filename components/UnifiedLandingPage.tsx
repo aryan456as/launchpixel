@@ -345,9 +345,9 @@ export default function UnifiedLandingPage() {
                             {/* Headline - Responsive and structured */}
                             <div>
                                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1]">
-                                    <span className="block text-white">Intelligent AI systems.</span>
+                                    <span className="block text-white">Intelligent AI Systems.</span>
                                     <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-[length:200%_auto] animate-gradient-flow bg-clip-text text-transparent">
-                                        Memorable websites.
+                                        Memorable Websites.
                                     </span>
                                 </h1>
                             </div>
