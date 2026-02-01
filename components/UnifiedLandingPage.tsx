@@ -403,13 +403,13 @@ export default function UnifiedLandingPage() {
             {/* ================================================================== */}
             {/* PARTNER LOGOS SECTION */}
             {/* ================================================================== */}
-            <section className="relative py-20">
-                <div className="relative z-10 h-20 overflow-hidden">
+            <section className="relative py-8">
+                <div className="relative z-10 h-16 overflow-hidden">
                     <LogoLoop
                         logos={partnerLogos}
                         speed={60}
                         direction="left"
-                        logoHeight={52}
+                        logoHeight={48}
                         gap={100}
                         pauseOnHover
                         fadeOut

@@ -242,7 +242,7 @@ export default function PortfolioPage() {
           <div className="text-center mt-12 sm:mt-16">
             <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">Ready to start your project?</p>
             <Link
-              href="/#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 text-sm sm:text-base"
             >
               Let's Work Together
@@ -271,23 +271,23 @@ export default function PortfolioPage() {
       {/* Modal Popup */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-4 pt-16 sm:pt-20"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-6"
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className="bg-gray-900 rounded-2xl border border-gray-800 max-w-3xl w-full max-h-[90vh] sm:max-h-[85vh] overflow-y-auto relative"
+            className="bg-gray-900 rounded-2xl border border-gray-800 w-full max-w-[calc(100%-1.5rem)] sm:max-w-xl relative overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-all"
+              className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-gray-800/80 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-all"
             >
-              <X size={18} className="sm:w-5 sm:h-5" />
+              <X size={16} />
             </button>
 
             {/* Project Image/Video */}
-            <div className="relative h-40 sm:h-48 md:h-64 overflow-hidden rounded-t-2xl">
+            <div className="relative h-40 sm:h-56 overflow-hidden">
               {selectedProject.video ? (
                 <video
                   src={selectedProject.video}
@@ -301,79 +301,48 @@ export default function PortfolioPage() {
                 <Image
                   src={selectedProject.image}
                   alt={selectedProject.displayName}
-                  width={1200}
-                  height={600}
+                  width={800}
+                  height={400}
                   className="w-full h-full object-cover"
                   // @ts-ignore
                   style={(selectedProject as any).imageStyle}
                 />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
             </div>
 
             {/* Project Details */}
             <div className="p-4 sm:p-6">
-              <div className="flex items-start justify-between mb-3 sm:mb-4 gap-3">
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-1">{selectedProject.displayName}</h2>
-                  <p className="text-sm sm:text-base text-indigo-400">{selectedProject.type}</p>
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <div className="min-w-0">
+                  <h2 className="text-lg sm:text-xl font-bold text-white truncate">{selectedProject.displayName}</h2>
+                  <p className="text-xs sm:text-sm text-indigo-400">{selectedProject.type}</p>
                 </div>
                 {selectedProject.link && (
                   <a
                     href={selectedProject.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm flex-shrink-0"
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-full hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 flex items-center gap-1.5 text-xs sm:text-sm flex-shrink-0"
                   >
-                    Visit Site
+                    Visit
                     <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5" />
                   </a>
                 )}
               </div>
 
-              <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm">{selectedProject.fullDescription}</p>
+              <p className="text-gray-400 text-xs sm:text-sm mb-4 line-clamp-3">{selectedProject.description}</p>
 
               {/* Technologies */}
-              <div className="mb-3 sm:mb-4">
-                <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Technologies Used</h3>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {selectedProject.technologies.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-0.5 sm:py-1 text-xs bg-gray-800 text-gray-300 rounded-full border border-gray-700"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Features */}
-              <div className="mb-3 sm:mb-4">
-                <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Key Features</h3>
-                <ul className="grid sm:grid-cols-2 gap-1 sm:gap-1.5">
-                  {selectedProject.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-                      <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Tags */}
-              <div>
-                <h3 className="text-sm sm:text-base font-semibold text-white mb-2">Categories</h3>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {selectedProject.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-0.5 sm:py-1 text-xs bg-indigo-950/50 text-indigo-300 rounded-full border border-indigo-800/50"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {selectedProject.technologies.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs bg-gray-800 text-gray-300 rounded-full border border-gray-700"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
