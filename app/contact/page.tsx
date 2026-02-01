@@ -378,16 +378,6 @@ export default function ContactPage() {
                       <p className="text-sm text-[#25D366] font-medium">Chat with us instantly</p>
                     </div>
                   </a>
-
-                  <div className="flex items-center gap-4 p-3 rounded-xl bg-gray-800/30">
-                    <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5 text-indigo-400" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Location</p>
-                      <p className="text-sm text-white font-medium">India (Remote Worldwide)</p>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -409,21 +399,6 @@ export default function ContactPage() {
                   <div className="flex justify-between items-center py-2">
                     <span className="text-gray-400">Sunday</span>
                     <span className="text-gray-500">Closed</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Response Badge */}
-              <div className="bg-gradient-to-br from-indigo-900/50 via-purple-900/40 to-indigo-900/50 backdrop-blur-xl rounded-2xl border border-indigo-700/30 p-6 shadow-xl">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-indigo-500/30 flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-6 h-6 text-indigo-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Quick Response Guarantee</h3>
-                    <p className="text-sm text-gray-300">
-                      We respond to all inquiries within 24 hours. For urgent matters, add "URGENT" to your subject.
-                    </p>
                   </div>
                 </div>
               </div>
