@@ -25,11 +25,12 @@ export default function CampusAmbassadorForm() {
     year: '',
     why: ''
   })
-  const [errors, setErrors] = useState({})
-  const [touched, setTouched] = useState({})
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
+  const formRef = React.useRef<HTMLFormElement>(null)
 
   // Track mouse position for background effects
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY })
   }
 
@@ -40,13 +41,13 @@ export default function CampusAmbassadorForm() {
     }
   }, [])
 
-  const handleBlur = (field) => {
+  const handleBlur = (field: string) => {
     setTouched(prev => ({ ...prev, [field]: true }))
-    const error = validateField(field, formData[field])
+    const error = validateField(field, formData[field as keyof typeof formData])
     setErrors(prev => ({ ...prev, [field]: error }))
   }
 
-  const validateField = (name, value) => {
+  const validateField = (name: string, value: string) => {
     switch (name) {
       case 'name':
         if (!value.trim()) return 'Name is required'
@@ -85,9 +86,9 @@ export default function CampusAmbassadorForm() {
   }
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors: Record<string, string> = {}
     Object.keys(formData).forEach(key => {
-      const error = validateField(key, formData[key])
+      const error = validateField(key, formData[key as keyof typeof formData])
       if (error) newErrors[key] = error
     })
 
@@ -95,7 +96,7 @@ export default function CampusAmbassadorForm() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (!validateForm()) {
@@ -103,36 +104,9 @@ export default function CampusAmbassadorForm() {
     }
 
     setIsLoading(true)
-
-    try {
-      const response = await fetch('/api/hiring', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        setIsSuccess(true)
-        setFormData({
-          name: '',
-          phone: '',
-          college: '',
-          department: '',
-          year: '',
-          why: ''
-        })
-        setErrors({})
-        setTouched({})
-      } else {
-        alert('There was an error. Please try again.')
-      }
-    } catch (error) {
-      alert('There was an error. Please try again.')
-      console.error('Error in form submission:', error)
-    } finally {
-      setIsLoading(false)
+    // Submit the form programmatically after validation
+    if (formRef.current) {
+      formRef.current.submit()
     }
   }
 
@@ -282,10 +256,23 @@ export default function CampusAmbassadorForm() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 max-w-xl mx-auto">
+          <form
+            ref={formRef}
+            action="https://formsubmit.co/viveksharma.network@gmail.com"
+            method="POST"
+            onSubmit={handleSubmit}
+            className="space-y-4 sm:space-y-6 max-w-xl mx-auto"
+          >
+            {/* FormSubmit Configuration */}
+            <input type="hidden" name="_subject" value="New Campus Ambassador Application - LaunchPixel" />
+            <input type="hidden" name="_next" value="https://launchpixel.in/hiring?success=true" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="box" />
+
             <div>
               <input
                 type="text"
+                name="name"
                 placeholder="Full Name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -300,6 +287,7 @@ export default function CampusAmbassadorForm() {
             <div>
               <input
                 type="tel"
+                name="phone"
                 placeholder="Phone Number"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -314,6 +302,7 @@ export default function CampusAmbassadorForm() {
             <div>
               <input
                 type="text"
+                name="college"
                 placeholder="College / University"
                 value={formData.college}
                 onChange={(e) => setFormData({ ...formData, college: e.target.value })}
@@ -328,6 +317,7 @@ export default function CampusAmbassadorForm() {
             <div>
               <input
                 type="text"
+                name="department"
                 placeholder="Department"
                 value={formData.department}
                 onChange={(e) => setFormData({ ...formData, department: e.target.value })}
@@ -341,6 +331,7 @@ export default function CampusAmbassadorForm() {
 
             <div>
               <select
+                name="year"
                 value={formData.year}
                 onChange={(e) => setFormData({ ...formData, year: e.target.value })}
                 onBlur={() => handleBlur('year')}
@@ -349,17 +340,18 @@ export default function CampusAmbassadorForm() {
                   transition-all duration-200 backdrop-blur-xl"
               >
                 <option value="">Select Year of Study</option>
-                <option value="1st">1st Year</option>
-                <option value="2nd">2nd Year</option>
-                <option value="3rd">3rd Year</option>
-                <option value="4th">4th Year</option>
-                <option value="Graduate">Graduate Student</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+                <option value="Graduate Student">Graduate Student</option>
               </select>
               {errors.year && touched.year && <p className="mt-2 text-red-400 text-sm">{errors.year}</p>}
             </div>
 
             <div>
               <textarea
+                name="message"
                 placeholder="Why do you want to be a Campus Ambassador for Launch Pixel?"
                 value={formData.why}
                 onChange={(e) => setFormData({ ...formData, why: e.target.value })}

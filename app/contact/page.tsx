@@ -122,47 +122,10 @@ function FAQSection() {
 
 export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        setIsSuccess(true)
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        })
-        setTimeout(() => setIsSuccess(false), 5000)
-      } else {
-        alert('Failed to send message. Please try again.')
-      }
-    } catch (error) {
-      console.error('Error:', error)
-      alert('An error occurred. Please try again.')
-    } finally {
-      setIsLoading(false)
-    }
+    // Form will submit naturally to FormSubmit.co
   }
 
   return (
@@ -249,22 +212,18 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {isSuccess && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="mb-6 p-4 bg-green-900/30 border border-green-700/50 rounded-xl text-green-300 flex items-center gap-3"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span>Message sent successfully! We'll get back to you soon.</span>
-                  </motion.div>
-                )}
+                <form
+                  action="https://formsubmit.co/viveksharma.network@gmail.com"
+                  method="POST"
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
+                  {/* FormSubmit Configuration */}
+                  <input type="hidden" name="_subject" value="New Contact Form Submission - LaunchPixel" />
+                  <input type="hidden" name="_next" value="https://launchpixel.in/contact?success=true" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="box" />
 
-                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -277,8 +236,6 @@ export default function ContactPage() {
                           id="name"
                           name="name"
                           required
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                           placeholder="John Doe"
                         />
@@ -296,8 +253,6 @@ export default function ContactPage() {
                           id="email"
                           name="email"
                           required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                           placeholder="john@example.com"
                         />
@@ -316,8 +271,6 @@ export default function ContactPage() {
                           type="tel"
                           id="phone"
                           name="phone"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                           placeholder="+91 00000 00000"
                         />
@@ -335,8 +288,6 @@ export default function ContactPage() {
                           id="subject"
                           name="subject"
                           required
-                          value={formData.subject}
-                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                           placeholder="Project Inquiry"
                         />
@@ -355,8 +306,6 @@ export default function ContactPage() {
                         name="message"
                         required
                         rows={5}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
                         placeholder="Tell us about your project, goals, and timeline..."
                       />
@@ -528,7 +477,7 @@ export default function ContactPage() {
             "@type": "ContactPage",
             "name": "Contact LaunchPixel",
             "description": "Get in touch with LaunchPixel for AI automation and digital solutions",
-            "url": "https://launchpixel.com/contact",
+            "url": "https://launchpixel.in/contact",
             "mainEntity": {
               "@type": "Organization",
               "name": "LaunchPixel",
