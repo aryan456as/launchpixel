@@ -526,12 +526,14 @@ export default function UnifiedLandingPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {services.map((service, idx) => (
-                            <SpotlightCard key={idx} className="service-card p-6 flex flex-col items-start h-full group hover:border-indigo-500/30 transition-colors">
-                                <div className="w-14 h-14 rounded-2xl bg-indigo-950/50 flex items-center justify-center mb-5 text-indigo-400 group-hover:scale-110 transition-transform">
-                                    {service.icon}
+                            <SpotlightCard key={idx} className="service-card p-6 h-full group hover:border-indigo-500/30 transition-colors">
+                                <div className="flex flex-col items-center text-center h-full">
+                                    <div className="w-14 h-14 rounded-2xl bg-indigo-950/50 flex items-center justify-center mb-5 text-indigo-400 group-hover:scale-110 transition-transform">
+                                        {service.icon}
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-2">{service.title}</h3>
+                                    <p className="text-sm text-gray-400 leading-relaxed">{service.desc}</p>
                                 </div>
-                                <h3 className="text-lg font-bold mb-2">{service.title}</h3>
-                                <p className="text-sm text-gray-400 leading-relaxed">{service.desc}</p>
                             </SpotlightCard>
                         ))}
                     </div>
@@ -550,12 +552,14 @@ export default function UnifiedLandingPage() {
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" style={{ perspective: '1000px' }}>
                         {whyChooseUs.map((item, idx) => (
-                            <SpotlightCard key={idx} className="why-card p-6 text-center flex flex-col items-center">
-                                <div className="w-16 h-16 rounded-full bg-indigo-950 flex items-center justify-center mb-5">
-                                    <item.icon className="w-8 h-8 text-indigo-400" />
+                            <SpotlightCard key={idx} className="why-card p-6">
+                                <div className="flex flex-col items-center text-center h-full">
+                                    <div className="w-16 h-16 rounded-full bg-indigo-950 flex items-center justify-center mb-5">
+                                        <item.icon className="w-8 h-8 text-indigo-400" />
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                                    <p className="text-sm text-gray-400">{item.desc}</p>
                                 </div>
-                                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
                             </SpotlightCard>
                         ))}
                     </div>

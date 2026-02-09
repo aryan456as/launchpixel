@@ -2,69 +2,54 @@
 
 import { Phone, MessageCircle } from "lucide-react"
 import { motion } from "framer-motion"
-import { useState } from "react"
 
 const FloatingButtons = () => {
-  const phoneNumber = "+918085149514" // Replace with actual phone number
-  const [showCallTooltip, setShowCallTooltip] = useState(false)
-  const [showWhatsAppTooltip, setShowWhatsAppTooltip] = useState(false)
+  const phoneNumber = "+917004635011"
 
   const handleCall = () => {
     window.location.href = `tel:${phoneNumber}`
   }
 
   const handleWhatsApp = () => {
-    window.location.href = `https://wa.me/${phoneNumber}`
+    window.location.href = `https://wa.me/${phoneNumber.replace('+', '')}`
   }
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
-      <div className="relative group">
-        <motion.button
-          className="bg-gradient-to-r from-indigo-600 to-indigo-500 text-white p-3 rounded-full shadow-lg hover:from-indigo-500 hover:to-indigo-400 transition-colors"
-          onClick={handleCall}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          onMouseEnter={() => setShowCallTooltip(true)}
-          onMouseLeave={() => setShowCallTooltip(false)}
-        >
-          <Phone className="w-6 h-6" />
-          <span className="sr-only">Call us</span>
-        </motion.button>
-        {showCallTooltip && (
-          <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-white text-[#800000] px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
-            Call us now
-          </div>
-        )}
-      </div>
+    // Only visible on mobile (hidden on md and up)
+    <div className="fixed bottom-5 right-4 flex flex-col gap-3 z-50 md:hidden">
+      {/* Call Button */}
+      <motion.button
+        className="relative w-12 h-12 rounded-full flex items-center justify-center bg-indigo-600/90 text-white shadow-lg backdrop-blur-sm"
+        onClick={handleCall}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        aria-label="Call us"
+      >
+        {/* Subtle glow effect */}
+        <span className="absolute inset-0 rounded-full bg-indigo-500 opacity-50 blur-md animate-pulse" />
+        <Phone className="w-5 h-5 relative z-10" />
+      </motion.button>
 
-      <div className="relative group">
-        <motion.button
-          className="bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:bg-[#128C7E] transition-colors"
-          onClick={handleWhatsApp}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          onMouseEnter={() => setShowWhatsAppTooltip(true)}
-          onMouseLeave={() => setShowWhatsAppTooltip(false)}
-        >
-          <MessageCircle className="w-6 h-6" />
-          <span className="sr-only">Message on WhatsApp</span>
-        </motion.button>
-        {showWhatsAppTooltip && (
-          <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-white text-[#25D366] px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
-            Chat on WhatsApp
-          </div>
-        )}
-      </div>
+      {/* WhatsApp Button */}
+      <motion.button
+        className="relative w-12 h-12 rounded-full flex items-center justify-center bg-[#25D366]/90 text-white shadow-lg backdrop-blur-sm"
+        onClick={handleWhatsApp}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+        aria-label="Message on WhatsApp"
+      >
+        {/* Subtle glow effect */}
+        <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-50 blur-md animate-pulse" />
+        <MessageCircle className="w-5 h-5 relative z-10" />
+      </motion.button>
     </div>
   )
 }
 
 export default FloatingButtons
-

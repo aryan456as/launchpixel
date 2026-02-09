@@ -97,7 +97,7 @@ export default function PrivacyPage() {
                             <div className="mt-4 p-4 bg-gray-800/50 rounded-xl">
                                 <p className="text-white font-medium">LaunchPixel</p>
                                 <p className="text-gray-400">Email: viveksharma.network@gmail.com</p>
-                                <p className="text-gray-400">Phone: +91 8085149514</p>
+                                <p className="text-gray-400">Phone: +91 7004635011</p>
                             </div>
                         </section>
 

@@ -4,6 +4,7 @@ import "./globals.css"
 import React from "react"
 import PersistentBackground from "../components/PersistentBackground"
 import GlobalLoader from "../components/GlobalLoader"
+import FloatingButtons from "../components/FloatingButtons"
 
 const geistSans = Inter({
   variable: "--font-geist-sans",
@@ -126,6 +127,7 @@ export default function RootLayout({
           <div className="relative z-10">
             {children}
           </div>
+          <FloatingButtons />
         </GlobalLoader>
       </body>
     </html>

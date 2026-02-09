@@ -354,7 +354,7 @@ export default function ContactPage() {
                     </div>
                   </a>
 
-                  <a href="tel:+918085149514" className="flex items-center gap-4 p-3 rounded-xl bg-gray-800/30 hover:bg-gray-800/50 transition-colors group">
+                  <a href="tel:+917004635011" className="flex items-center gap-4 p-3 rounded-xl bg-gray-800/30 hover:bg-gray-800/50 transition-colors group">
                     <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <Phone className="w-5 h-5 text-indigo-400" />
                     </div>
@@ -365,7 +365,7 @@ export default function ContactPage() {
                   </a>
 
                   <a
-                    href="https://wa.me/918085149514"
+                    href="https://wa.me/917004635011"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-3 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/20 transition-colors group"
