@@ -3,8 +3,40 @@ import nodemailer from 'nodemailer'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { name, phone, college, department, year, why } = body
+    const formData = await request.formData()
+
+    const name = formData.get('name') as string
+    const phone = formData.get('phone') as string
+    const college = formData.get('college') as string
+    const department = formData.get('department') as string
+    const year = formData.get('year') as string
+    const why = formData.get('why') as string
+
+    // Process file attachments
+    const files = formData.getAll('attachments') as File[]
+    const attachments: { filename: string; content: Buffer }[] = []
+
+    for (const file of files) {
+      if (file && file.size > 0) {
+        const arrayBuffer = await file.arrayBuffer()
+        attachments.push({
+          filename: file.name,
+          content: Buffer.from(arrayBuffer),
+        })
+      }
+    }
+
+    // Build attachment list for the email body
+    const attachmentListHtml = attachments.length > 0
+      ? `
+        <div style="margin-top: 20px; padding: 15px; background-color: #f0fdf4; border-left: 4px solid #22c55e; border-radius: 4px;">
+          <p style="font-weight: bold; color: #166534; margin-bottom: 8px;">📎 Attachments (${attachments.length}):</p>
+          <ul style="margin: 0; padding-left: 20px; color: #374151;">
+            ${attachments.map(a => `<li style="padding: 2px 0;">${a.filename}</li>`).join('')}
+          </ul>
+        </div>
+      `
+      : ''
 
     // Create transporter with Gmail SMTP
     const transporter = nodemailer.createTransport({
@@ -52,6 +84,8 @@ export async function POST(request: NextRequest) {
               <p style="font-weight: bold; color: #374151; margin-bottom: 10px;">Why Join as Campus Ambassador:</p>
               <p style="color: #1f2937; line-height: 1.6; white-space: pre-wrap;">${why}</p>
             </div>
+
+            ${attachmentListHtml}
           </div>
           
           <div style="margin-top: 20px; padding: 15px; background-color: #ede9fe; border-left: 4px solid #7c3aed; border-radius: 4px;">
@@ -64,7 +98,11 @@ export async function POST(request: NextRequest) {
             This email was sent from LaunchPixel Campus Ambassador Application Form
           </p>
         </div>
-      `
+      `,
+      attachments: attachments.map(a => ({
+        filename: a.filename,
+        content: a.content,
+      }))
     }
 
     await transporter.sendMail(mailOptions)

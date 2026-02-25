@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState } from 'react'
-import { Sparkles, ArrowRight, Loader2 } from "lucide-react"
+import React, { useState, useRef, useCallback } from 'react'
+import { Sparkles, ArrowRight, Loader2, Upload, X } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Navigation from "../../components/Navigation"
 import Footer from "../../components/Footer"
@@ -16,6 +16,7 @@ export default function CampusAmbassadorForm() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
@@ -27,7 +28,73 @@ export default function CampusAmbassadorForm() {
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
-  const formRef = React.useRef<HTMLFormElement>(null)
+
+  // File upload state
+  const [attachments, setAttachments] = useState<File[]>([])
+  const [isDragOver, setIsDragOver] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10 MB per file
+  const MAX_FILES = 5
+  const ACCEPTED_TYPES = '.pdf,.png,.jpg,.jpeg,.gif,.mp4,.webm,.zip,.rar,.doc,.docx'
+
+  const handleFiles = useCallback((files: FileList | null) => {
+    if (!files) return
+    const newFiles = Array.from(files)
+    const validFiles: File[] = []
+    const fileErrors: string[] = []
+
+    for (const file of newFiles) {
+      if (file.size > MAX_FILE_SIZE) {
+        fileErrors.push(`"${file.name}" exceeds 10 MB limit`)
+        continue
+      }
+      if (attachments.length + validFiles.length >= MAX_FILES) {
+        fileErrors.push(`Maximum ${MAX_FILES} files allowed`)
+        break
+      }
+      // Avoid duplicates by name
+      if (attachments.some(f => f.name === file.name) || validFiles.some(f => f.name === file.name)) {
+        fileErrors.push(`"${file.name}" is already attached`)
+        continue
+      }
+      validFiles.push(file)
+    }
+
+    if (validFiles.length > 0) {
+      setAttachments(prev => [...prev, ...validFiles])
+    }
+    if (fileErrors.length > 0) {
+      setErrors(prev => ({ ...prev, files: fileErrors.join('. ') }))
+    } else {
+      setErrors(prev => { const { files: _, ...rest } = prev; return rest })
+    }
+  }, [attachments])
+
+  const removeFile = (index: number) => {
+    setAttachments(prev => prev.filter((_, i) => i !== index))
+    setErrors(prev => { const { files: _, ...rest } = prev; return rest })
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(true)
+  }
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+  }
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+    handleFiles(e.dataTransfer.files)
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + ' B'
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
+  }
 
   // Track mouse position for background effects
   const handleMouseMove = (e: MouseEvent) => {
@@ -96,17 +163,52 @@ export default function CampusAmbassadorForm() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSubmitError('')
 
     if (!validateForm()) {
       return
     }
 
     setIsLoading(true)
-    // Submit the form programmatically after validation
-    if (formRef.current) {
-      formRef.current.submit()
+
+    try {
+      const payload = new FormData()
+      // FormSubmit configuration
+      payload.append('_subject', 'New Campus Ambassador Application - LaunchPixel')
+      payload.append('_captcha', 'false')
+      payload.append('_template', 'box')
+
+      // Form fields
+      payload.append('Name', formData.name)
+      payload.append('Phone', formData.phone)
+      payload.append('College / University', formData.college)
+      payload.append('Department', formData.department)
+      payload.append('Year of Study', formData.year)
+      payload.append('Why Join as Campus Ambassador', formData.why)
+
+      // File attachments
+      for (const file of attachments) {
+        payload.append('attachment', file)
+      }
+
+      const res = await fetch('https://formsubmit.co/ajax/viveksharma.network@gmail.com', {
+        method: 'POST',
+        body: payload,
+      })
+
+      const result = await res.json()
+
+      if (result.success === 'true' || result.success === true) {
+        setIsSuccess(true)
+      } else {
+        setSubmitError('Something went wrong. Please try again.')
+      }
+    } catch {
+      setSubmitError('Network error. Please check your connection and try again.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -257,17 +359,9 @@ export default function CampusAmbassadorForm() {
           </div>
 
           <form
-            ref={formRef}
-            action="https://formsubmit.co/viveksharma.network@gmail.com"
-            method="POST"
             onSubmit={handleSubmit}
             className="space-y-4 sm:space-y-6 max-w-xl mx-auto"
           >
-            {/* FormSubmit Configuration */}
-            <input type="hidden" name="_subject" value="New Campus Ambassador Application - LaunchPixel" />
-            <input type="hidden" name="_next" value="https://launchpixel.in/hiring?success=true" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="box" />
 
             <div>
               <input
@@ -363,6 +457,77 @@ export default function CampusAmbassadorForm() {
               />
               {errors.why && touched.why && <p className="mt-2 text-red-400 text-sm">{errors.why}</p>}
             </div>
+
+            {/* File Upload Zone */}
+            <div>
+              <div
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}
+                className={`w-full px-6 py-8 rounded-xl border-2 border-dashed cursor-pointer
+                  transition-all duration-200 backdrop-blur-xl text-center
+                  ${isDragOver
+                    ? 'border-indigo-400 bg-indigo-800/40 scale-[1.02]'
+                    : 'border-indigo-700/50 bg-indigo-800/20 hover:border-indigo-500/60 hover:bg-indigo-800/30'
+                  }`}
+              >
+                <Upload className={`w-8 h-8 mx-auto mb-3 transition-colors ${isDragOver ? 'text-indigo-300' : 'text-indigo-500'
+                  }`} />
+                <p className="text-gray-300 text-sm sm:text-base font-medium">
+                  {isDragOver ? 'Drop files here' : 'Drag & drop your files here'}
+                </p>
+                <p className="text-gray-500 text-xs sm:text-sm mt-1">
+                  Resume, portfolio, images, videos, or zip &middot; Max 10 MB each &middot; Up to {MAX_FILES} files
+                </p>
+                <p className="text-gray-600 text-xs mt-2">
+                  PDF, PNG, JPG, GIF, MP4, WEBM, ZIP, RAR, DOC, DOCX
+                </p>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept={ACCEPTED_TYPES}
+                  onChange={(e) => { handleFiles(e.target.files); e.target.value = '' }}
+                  className="hidden"
+                />
+              </div>
+
+              {/* Attached Files List */}
+              {attachments.length > 0 && (
+                <div className="mt-3 space-y-2">
+                  {attachments.map((file, index) => (
+                    <div
+                      key={`${file.name}-${index}`}
+                      className="flex items-center justify-between px-4 py-2.5 rounded-lg
+                        bg-indigo-800/30 border border-indigo-700/40 text-sm"
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="text-gray-200 truncate">{file.name}</span>
+                        <span className="text-gray-500 text-xs flex-shrink-0">({formatFileSize(file.size)})</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); removeFile(index) }}
+                        className="text-gray-400 hover:text-red-400 transition-colors p-1 flex-shrink-0"
+                        aria-label={`Remove ${file.name}`}
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {errors.files && <p className="mt-2 text-red-400 text-sm">{errors.files}</p>}
+            </div>
+
+            {/* Submit Error */}
+            {submitError && (
+              <p className="text-red-400 text-sm text-center bg-red-900/20 rounded-lg px-4 py-3 border border-red-700/30">
+                {submitError}
+              </p>
+            )}
 
             <button
               type="submit"
