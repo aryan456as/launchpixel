@@ -94,8 +94,8 @@ export default function Footer() {
             <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400 mt-0.5 flex-shrink-0" />
-                <a href="mailto:viveksharma.network@gmail.com" className="hover:text-indigo-400 transition-colors break-all">
-                  viveksharma.network@gmail.com
+                <a href="mailto:contact@launchpixel.in" className="hover:text-indigo-400 transition-colors break-all">
+                  contact@launchpixel.in
                 </a>
               </li>
               <li className="flex items-start gap-2">
