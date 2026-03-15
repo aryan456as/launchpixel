@@ -129,13 +129,18 @@ export default function CareersPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-gray-950/50 via-gray-950/80 to-gray-950 pointer-events-none" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 pt-32 pb-20">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Build the Future with <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">LaunchPixel</span>
+      <div className="relative z-10 container mx-auto px-4 pt-32 pb-24">
+        <div className="text-center mb-20 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            Join Our Team
+          </div>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight">
+            Build the Future with <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500">LaunchPixel</span>
           </h1>
-          <p className="text-lg text-gray-300">
-            We are looking for passionate, driven interns to join our fully remote team and gain real-world experience. Explore our open positions below.
+          <p className="text-xl text-gray-400 font-light leading-relaxed max-w-2xl mx-auto">
+            We are looking for passionate, driven individuals to join our fully remote team. Gain real-world experience and shape the next generation of AI and tech.
           </p>
         </div>
 
@@ -144,47 +149,52 @@ export default function CareersPage() {
             {INTERNSHIPS.map((internship) => (
               <div
                 key={internship.id}
-                className="bg-gray-900/50 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all group flex flex-col"
+                className="bg-gray-900/40 backdrop-blur-2xl border border-gray-800/50 hover:border-indigo-500/50 rounded-3xl p-8 transition-all duration-500 group flex flex-col hover:shadow-2xl hover:shadow-indigo-500/10 relative overflow-hidden"
               >
-                <div className={`w-14 h-14 rounded-xl mb-6 flex items-center justify-center bg-gradient-to-br ${internship.gradient} bg-opacity-10 text-white`}>
+                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${internship.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className={`w-16 h-16 rounded-2xl mb-8 flex items-center justify-center bg-gradient-to-br ${internship.gradient} bg-opacity-10 text-white shadow-lg`}>
                   <internship.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">{internship.title}</h3>
                 <p className="text-gray-400 mb-6 flex-grow">{internship.description}</p>
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">Key Responsibilities:</h4>
-                  <ul className="text-sm text-gray-400 list-disc pl-5 space-y-1">
-                    {internship.responsibilities.slice(0, 2).map((r, i) => (
-                      <li key={i}>{r}</li>
+                <div className="mb-8">
+                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Key Responsibilities</h4>
+                  <ul className="text-sm text-gray-400 list-none space-y-3">
+                    {internship.responsibilities.slice(0, 3).map((r, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0" />
+                        <span className="leading-relaxed">{r}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
                 <button
                   onClick={() => setSelectedRole(internship.id)}
-                  className="w-full py-3 bg-gray-800 hover:bg-indigo-600 text-white rounded-xl transition-all flex justify-center items-center gap-2 group-hover:bg-indigo-600"
+                  className="w-full py-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-gray-600 text-white rounded-2xl transition-all duration-300 flex justify-center items-center gap-2 group-hover:bg-indigo-600 group-hover:border-indigo-600 shadow-sm"
                 >
-                  Apply Now <ArrowRight className="w-4 h-4" />
+                  <span className="font-semibold">Apply Now</span> <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
             ))}
           </div>
         ) : (
-          <div className="max-w-4xl mx-auto bg-gray-900/60 backdrop-blur-xl border border-gray-800 rounded-3xl overflow-hidden shadow-2xl relative">
+          <div className="max-w-4xl mx-auto bg-gray-900/80 backdrop-blur-3xl border border-gray-800/60 rounded-[2rem] overflow-hidden shadow-2xl relative">
             <button
               onClick={() => setSelectedRole(null)}
-              className="absolute top-6 right-6 text-gray-400 hover:text-white bg-gray-800/50 hover:bg-gray-700/50 p-2 rounded-full transition-all"
+              className="absolute top-6 right-6 text-gray-400 hover:text-white bg-gray-800/80 hover:bg-gray-700 p-2.5 rounded-full transition-all z-20 backdrop-blur-sm"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="p-8 sm:p-12 border-b border-gray-800 bg-gray-900/50">
-              <div className="flex items-center gap-4 mb-4">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${roleData?.gradient} text-white`}>
-                  {roleData && <roleData.icon className="w-6 h-6" />}
+            <div className="p-8 md:p-14 border-b border-gray-800/60 bg-gradient-to-b from-gray-800/20 to-transparent relative overflow-hidden">
+              <div className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl ${roleData?.gradient} opacity-5 blur-3xl -z-10 rounded-full translate-x-1/3 -translate-y-1/3`} />
+              <div className="flex items-center gap-5 mb-5 relative z-10">
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br ${roleData?.gradient} text-white shadow-lg`}>
+                  {roleData && <roleData.icon className="w-7 h-7" />}
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white">{roleData?.title}</h2>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">{roleData?.title}</h2>
               </div>
-              <p className="text-gray-400">Complete the application below to apply for this remote internship position.</p>
+              <p className="text-gray-400 text-lg font-light leading-relaxed max-w-2xl relative z-10">Complete the application below to apply for this remote position. We review applications on a rolling basis.</p>
             </div>
 
             <form
@@ -201,8 +211,11 @@ export default function CareersPage() {
               <input type="hidden" name="Role" value={roleData?.title} />
 
               <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Section 1: Basic Information</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <h3 className="text-lg font-bold text-white flex items-center gap-3">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">1</span>
+                  Basic Information
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-5">
                   <input type="text" name="Full Name" placeholder="Full Name *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500" />
                   <input type="email" name="Email Address" placeholder="Email Address *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500" />
                   <input type="tel" name="Phone Number" placeholder="Phone Number *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500" />
@@ -218,8 +231,11 @@ export default function CareersPage() {
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Section 2: Education</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-4">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">2</span>
+                  Education & Experience
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-5">
                   <select name="Current Qualification" required className="form-select w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500">
                     <option value="">Current Qualification *</option>
                     <option value="B.Tech / B.E">B.Tech / B.E</option>
@@ -240,13 +256,19 @@ export default function CareersPage() {
 
               {selectedRole === 'mern' && (
                 <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Section 3: Technical Skills</h3>
-                  <div className="space-y-4 text-gray-300">
+                  <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-4">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">3</span>
+                    Technical Skills
+                  </h3>
+                  <div className="space-y-5 text-gray-300">
                     <input type="text" name="Comfortable Technologies" placeholder="Technologies you are comfortable with (e.g. React, Node...) *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white" />
                     <input type="number" min="1" max="5" name="MERN Stack Rating" placeholder="Rate your MERN Stack knowledge (1-5) *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white" />
-                    <textarea name="MERN Projects Links" placeholder="If you've built MERN projects, provide links (GitHub / Live Demo)" rows={3} className="form-textarea w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white"></textarea>
+                    <textarea name="MERN Projects Links" placeholder="If you've built MERN projects, provide links (GitHub / Live Demo)" rows={3} className="form-textarea w-full bg-gray-800/50 border border-gray-700 flex items-center justify-center w-6 h-6 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
 
-                    <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2 mt-6">Section 4: AI & Tools Knowledge</h3>
+                    <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-8 pb-2">
+                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">4</span>
+                      AI & Tools Knowledge
+                    </h3>
                     <input type="text" name="AI Tools Used" placeholder="Which AI tools have you used? (e.g. ChatGPT, Claude, Cursor) *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white" />
                     <select name="Prompt Engineering Experience" className="form-select w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white">
                       <option value="">Do you have experience with Prompt Engineering?</option>
@@ -259,8 +281,11 @@ export default function CareersPage() {
 
               {selectedRole === 'lead-gen' && (
                 <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Role Specific Questions</h3>
-                  <div className="space-y-4 text-gray-300">
+                  <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-4">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">3</span>
+                    Role Specific Questions
+                  </h3>
+                  <div className="space-y-5 text-gray-300">
                     <textarea name="Sales Experience" placeholder="Do you have experience in sales or lead generation? Please explain *" required rows={3} className="form-textarea w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white"></textarea>
                     <input type="text" name="Lead Gen Tools" placeholder="Lead generation tools used (Apollo, Navigator, Hunter.io, etc)" className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white" />
                     <textarea name="Finding Leads Setup" placeholder="How do you usually find potential business leads? Channels comfortable with? *" required rows={2} className="form-textarea w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white"></textarea>
@@ -277,8 +302,11 @@ export default function CareersPage() {
 
               {selectedRole === 'seo' && (
                 <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Role Specific Questions</h3>
-                  <div className="space-y-4 text-gray-300">
+                  <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-4">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">3</span>
+                    Role Specific Questions
+                  </h3>
+                  <div className="space-y-5 text-gray-300">
                     <select name="SEO Experience Level" required className="form-select w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white">
                       <option value="">What is your experience level with SEO? *</option>
                       <option value="Beginner">Beginner</option>
@@ -294,8 +322,11 @@ export default function CareersPage() {
 
               {selectedRole === 'social' && (
                 <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Role Specific Questions</h3>
-                  <div className="space-y-4 text-gray-300">
+                  <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-4">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">3</span>
+                    Role Specific Questions
+                  </h3>
+                  <div className="space-y-5 text-gray-300">
                     <input type="text" name="Social Platforms" placeholder="Which platforms do you actively use? *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white" />
                     <select name="Managed Accounts Before" className="form-select w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white">
                       <option value="">Have you managed social media accounts before?</option>
@@ -308,8 +339,11 @@ export default function CareersPage() {
               )}
 
               <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Final Details</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-4">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">!</span>
+                  Final Details
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-5">
                   <select name="Hours per Week" required className="form-select w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500">
                     <option value="">Internship availability (hours per week) *</option>
                     <option value="5-10 hours">5-10 hours</option>
@@ -370,26 +404,28 @@ export default function CareersPage() {
                 </div>
               </div>
 
-              <div className="pt-6">
+              <div className="pt-8 pb-4">
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold text-lg hover:opacity-90 transition-all shadow-lg flex items-center justify-center gap-2"
+                  className="w-full px-8 py-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-[length:200%_auto] text-white rounded-2xl font-bold text-lg hover:bg-right transition-all duration-500 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-indigo-500/25 group relative overflow-hidden"
                 >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="w-6 h-6 animate-spin" />
-                      Submitting...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-6 h-6" />
-                      Submit Application
-                    </>
-                  )}
+                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+                  <span className="relative z-10 flex items-center gap-3">
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-6 h-6 animate-spin" />
+                        Submitting Application...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-6 h-6" />
+                        Submit Application
+                      </>
+                    )}
+                  </span>
                 </button>
               </div>
-
             </form>
           </div>
         )}
