@@ -213,7 +213,7 @@ export default function ContactPage() {
                 </div>
 
                 <form
-                  action="https://formsubmit.co/viveksharma.network@gmail.com"
+                  action="https://formsubmit.co/contact@launchpixel.in"
                   method="POST"
                   onSubmit={handleSubmit}
                   className="space-y-5"
@@ -344,13 +344,13 @@ export default function ContactPage() {
               <div className="bg-gray-900/60 backdrop-blur-xl rounded-2xl border border-gray-800 p-6 shadow-xl">
                 <h3 className="text-lg font-bold text-white mb-5">Contact Information</h3>
                 <div className="space-y-5">
-                  <a href="mailto:viveksharma.network@gmail.com" className="flex items-center gap-4 p-3 rounded-xl bg-gray-800/30 hover:bg-gray-800/50 transition-colors group">
+                  <a href="mailto:contact@launchpixel.in" className="flex items-center gap-4 p-3 rounded-xl bg-gray-800/30 hover:bg-gray-800/50 transition-colors group">
                     <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <Mail className="w-5 h-5 text-indigo-400" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wide">Email</p>
-                      <p className="text-sm text-white font-medium">viveksharma.network@gmail.com</p>
+                      <p className="text-sm text-white font-medium">contact@launchpixel.in</p>
                     </div>
                   </a>
 
@@ -456,7 +456,7 @@ export default function ContactPage() {
             "mainEntity": {
               "@type": "Organization",
               "name": "LaunchPixel",
-              "email": "viveksharma.network@gmail.com",
+              "email": "contact@launchpixel.in",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "IN"
@@ -464,7 +464,7 @@ export default function ContactPage() {
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "Customer Service",
-                "email": "viveksharma.network@gmail.com",
+                "email": "contact@launchpixel.in",
                 "availableLanguage": ["English"]
               }
             }

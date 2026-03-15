@@ -24,7 +24,7 @@ export default function Navigation() {
     { href: "/", label: "Home" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/blogs", label: "Blog" },
-    { href: "/hiring", label: "Hiring" },
+    { href: "/careers", label: "Careers" },
   ]
 
   // Animation variants
