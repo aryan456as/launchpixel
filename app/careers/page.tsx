@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Sparkles, ArrowRight, Loader2, Code2, LineChart, Search, Megaphone, UploadCloud, X } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Navigation from "../../components/Navigation"
@@ -73,6 +73,16 @@ export default function CareersPage() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('success') === 'true') {
+        setIsSuccess(true);
+        window.history.replaceState({}, '', '/careers');
+      }
+    }
+  }, []);
+
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
     e.stopPropagation()
@@ -106,7 +116,7 @@ export default function CareersPage() {
         <div className="flex items-center justify-center px-4 py-40 relative z-10">
           <div className="max-w-md w-full text-center p-8 rounded-2xl bg-indigo-900/20 backdrop-blur-sm border border-indigo-700/30">
             <h2 className="text-2xl font-bold text-white mb-4">Application Submitted!</h2>
-            <p className="text-gray-300 mb-6">Our team will review your application and reach out to you soon.</p>
+            <p className="text-gray-300 mb-6">our team will reach out to you shortly!</p>
             <button
               onClick={() => { setIsSuccess(false); setSelectedRole(null); }}
               className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:opacity-90 transition-all shadow-lg mx-auto"
@@ -203,7 +213,15 @@ export default function CareersPage() {
               method="POST"
               encType="multipart/form-data"
               className="p-8 sm:p-12 space-y-8"
-              onSubmit={() => setIsLoading(true)}
+              onSubmit={(e) => {
+                const isResumeRequired = selectedRole === 'mern' || selectedRole === 'seo'
+                if (isResumeRequired && !file) {
+                  e.preventDefault()
+                  alert("Please upload your resume. It is required for this role.")
+                  return
+                }
+                setIsLoading(true)
+              }}
             >
               <input type="hidden" name="_subject" value={`New Internship Application: ${roleData?.title}`} />
               <input type="hidden" name="_next" value="https://launchpixel.in/careers?success=true" />
@@ -263,7 +281,7 @@ export default function CareersPage() {
                   <div className="space-y-5 text-gray-300">
                     <input type="text" name="Comfortable Technologies" placeholder="Technologies you are comfortable with (e.g. React, Node...) *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white" />
                     <input type="number" min="1" max="5" name="MERN Stack Rating" placeholder="Rate your MERN Stack knowledge (1-5) *" required className="form-input w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white" />
-                    <textarea name="MERN Projects Links" placeholder="If you've built MERN projects, provide links (GitHub / Live Demo)" rows={3} className="form-textarea w-full bg-gray-800/50 border border-gray-700 flex items-center justify-center w-6 h-6 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
+                    <textarea name="MERN Projects Links" placeholder="If you've built MERN projects, provide links (GitHub / Live Demo)" rows={3} className="form-textarea w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
 
                     <h3 className="text-lg font-bold text-white flex items-center gap-3 pt-8 pb-2">
                       <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">4</span>
@@ -364,7 +382,9 @@ export default function CareersPage() {
 
               {/* Drag and Drop File Upload for Resume */}
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">Resume / Portfolios</h3>
+                <h3 className="text-xl font-semibold text-white border-b border-gray-800 pb-2">
+                  Resume / Portfolios {(selectedRole === 'mern' || selectedRole === 'seo') && <span className="text-red-500">*</span>}
+                </h3>
                 <div
                   className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all ${file ? 'border-indigo-500 bg-indigo-500/10' : 'border-gray-700 bg-gray-800/30 hover:bg-gray-800/50'}`}
                   onDragOver={handleDragOver}
